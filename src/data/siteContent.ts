@@ -1,19 +1,19 @@
 export const siteInfo = {
   brandName: "Bilal & Himaas Studio",
   shortBrandName: "B&H Studio",
-  tagline: "ERP, software development, and user-focused digital experiences",
-  heroTitle: "ERPNext, software, and UI/UX solutions for practical business needs",
+  tagline: "ERP, cloud, software, and user-focused digital experiences",
+  heroTitle: "ERPNext, cloud, software, and UI/UX solutions for practical business needs",
   heroDescription:
-    "A two-person consultancy focused on ERPNext, Frappe customization, software development, and user-focused digital experiences.",
-  metadataTitle: "Bilal & Himaas Studio | ERP, Software & UI/UX Consultancy",
+    "A two-person consultancy focused on ERPNext, Frappe customization, AWS serverless projects, software development, and user-focused digital experiences.",
+  metadataTitle: "Bilal & Himaas Studio | ERP, Cloud, Software & UI/UX Consultancy",
   metadataDescription:
-    "Two-person consultancy focused on ERPNext, Frappe, software development, and UI/UX solutions.",
+    "Two-person consultancy focused on ERPNext, Frappe, AWS serverless projects, software development, and UI/UX solutions.",
 };
 
 export const contactInfo = {
   email: "bilal.ali1999@gmail.com",
   location: "United Kingdom / Remote",
-  availability: "Available for selected ERP, software, and UI/UX projects",
+  availability: "Available for selected ERP, cloud, software, and UI/UX projects",
   upwork: "https://www.upwork.com/freelancers/~0128f68001daf07f8c",
   github: "https://github.com/Bilal-Ali99",
   linkedin: "https://www.linkedin.com/in/syed-muhammad-bilal-ali-520b77194/",
@@ -24,6 +24,9 @@ export type Person = {
   roles: string[];
   location: string;
   bio: string;
+  initials: string;
+  imageSrc?: string;
+  imageAlt: string;
   skills: {
     group: string;
     items: string[];
@@ -48,6 +51,8 @@ export const people: Person[] = [
     roles: ["Software Developer", "ERP Developer"],
     location: "United Kingdom",
     bio: "Results-driven Python Developer with hands-on experience in ERPNext and Frappe Framework customization. Also has a background in IT infrastructure and exposure to Machine Learning through university projects and a short internship.",
+    initials: "BA",
+    imageAlt: "Portrait placeholder for Syed Muhammad Bilal Ali",
     skills: [
       {
         group: "ERPNext & Frappe",
@@ -133,25 +138,60 @@ export const people: Person[] = [
   },
   {
     name: "Himaas Ali",
-    roles: ["Software Engineer", "UI/UX"],
+    roles: ["Cloud Architecture Consultant", "Software Engineer", "UI/UX"],
     location: "United Kingdom",
-    bio: "Software Engineer and UI/UX-focused team member. Full profile details will be added soon.",
+    bio: "Software Engineer and UI/UX-focused team member with project experience in medication management systems, AWS serverless applications, secure frontend delivery, real-time analytics, and cloud observability.",
+    initials: "HA",
+    imageAlt: "Portrait placeholder for Himaas Ali",
     skills: [
       {
-        group: "Profile",
-        items: ["Software Engineering", "UI/UX", "Details coming soon"],
+        group: "Software Engineering",
+        items: ["Application Design", "Backend Workflows", "Frontend Delivery", "UI/UX"],
+      },
+      {
+        group: "AWS & Cloud",
+        items: [
+          "AWS Lambda",
+          "DynamoDB",
+          "API Gateway",
+          "SNS",
+          "CloudFront",
+          "WAF",
+          "S3",
+          "IAM",
+          "VPC",
+          "CloudWatch",
+        ],
+      },
+      {
+        group: "Data & Infrastructure",
+        items: ["Kinesis Data Streams", "CloudFormation", "Terraform", "Python", "YAML", "HCL"],
+      },
+      {
+        group: "Security & Development",
+        items: ["Secure Software", "Azure Security", "Blazor", "ASP.NET Core 5", "Data Analytics"],
       },
     ],
     timeline: [],
-    links: {},
-    status: "Full profile details coming soon.",
+    links: {
+      github: contactInfo.github,
+      linkedin: contactInfo.linkedin,
+      upwork: contactInfo.upwork,
+    },
   },
 ];
 
 export type Project = {
   id: number;
   title: string;
-  category: "ERPNext" | "HR & Payroll" | "Machine Learning" | "Data Science";
+  category:
+    | "ERPNext"
+    | "HR & Payroll"
+    | "Machine Learning"
+    | "Data Science"
+    | "Health Tech"
+    | "AWS Serverless"
+    | "AWS Analytics";
   description: string;
   problem: string;
   solution: string;
@@ -166,7 +206,7 @@ export type Project = {
 export const projects: Project[] = [
   {
     id: 1,
-    title: "JTQ Donation Management System",
+    title: "Donation Management System",
     category: "ERPNext",
     description:
       "Complete ERPNext custom module for a nonprofit trust with donation workflows, accounting integration, coupon inventory, and sponsorship programs.",
@@ -185,7 +225,7 @@ export const projects: Project[] = [
   },
   {
     id: 2,
-    title: "JTQ HR & Payroll Customization",
+    title: "HR & Payroll Customization",
     category: "HR & Payroll",
     description:
       "ERPNext HR and Payroll customization with bulk attendance processing, multi-location payroll filters, leave validation, and custom HR master data.",
@@ -240,6 +280,86 @@ export const projects: Project[] = [
     color: "#326ce5",
     owner: "Syed Muhammad Bilal Ali",
   },
+  {
+    id: 5,
+    title: "EasyMed",
+    category: "Health Tech",
+    description:
+      "Medication management device and software toolset that helps users track medication schedules across desktop, hardware, and mobile notification flows.",
+    problem:
+      "Customers needed a reliable way to manage medication times, receive reminders, and confirm whether medication had actually been taken.",
+    solution:
+      "Designed a connected workflow where a desktop application provides medication information and timings, the physical device alerts users through lights and a buzzer, mobile notifications reinforce reminders, and a weight sensor detects whether medication has been taken.",
+    tech: ["Medication Device", "Desktop Application", "Mobile Notifications", "Weight Sensor", "Lights", "Buzzer"],
+    highlights: [
+      { label: "Alerts", value: "Device + Mobile" },
+      { label: "Detection", value: "Weight Sensor" },
+      { label: "Care Flow", value: "Third-party Alerts" },
+    ],
+    color: "#ec4899",
+    owner: "Himaas Ali",
+  },
+  {
+    id: 6,
+    title: "Job Application Tracker",
+    category: "AWS Serverless",
+    description:
+      "Serverless job application tracker with a live backend database, automated email notifications, secure global frontend delivery, observability, and cost monitoring.",
+    problem:
+      "Job seekers often lose track of applications, interview stages, follow-ups, and status changes across multiple companies.",
+    solution:
+      "Built a free-tier focused AWS architecture using Lambda, DynamoDB, API Gateway, SNS, CloudFront, WAF, S3, IAM, VPC design, CloudWatch dashboards, error alarms, and billing alarms.",
+    tech: [
+      "AWS Lambda",
+      "DynamoDB",
+      "API Gateway",
+      "SNS",
+      "CloudFront",
+      "WAF",
+      "S3",
+      "IAM",
+      "VPC",
+      "CloudWatch",
+    ],
+    highlights: [
+      { label: "Compute", value: "Serverless" },
+      { label: "Alerts", value: "Email Status" },
+      { label: "Delivery", value: "Global HTTPS" },
+    ],
+    color: "#ff9900",
+    owner: "Himaas Ali",
+  },
+  {
+    id: 7,
+    title: "Real-Time Canadian Weather Analytics",
+    category: "AWS Analytics",
+    description:
+      "Real-time weather analytics pipeline that ingests official Canadian weather API data, processes events, detects extreme conditions, sends alerts, and stores operational and historical data.",
+    problem:
+      "Weather data needed to be processed in real time so extreme temperature events could be detected quickly and communicated through alerting.",
+    solution:
+      "Used Kinesis Data Streams, AWS Lambda, DynamoDB, SNS, S3, and CloudWatch to compute feels-like temperature, calculate severity scores, send email alerts, and archive data for analysis with infrastructure defined through CloudFormation and Terraform.",
+    tech: [
+      "AWS Lambda",
+      "Kinesis Data Streams",
+      "DynamoDB",
+      "SNS",
+      "S3",
+      "CloudWatch",
+      "CloudFormation",
+      "Terraform",
+      "Python",
+      "YAML",
+      "HCL",
+    ],
+    highlights: [
+      { label: "Processing", value: "Real-time" },
+      { label: "Architecture", value: "Serverless" },
+      { label: "Compliance", value: "PIPEDA-aware" },
+    ],
+    color: "#38bdf8",
+    owner: "Himaas Ali",
+  },
 ];
 
 export const certifications = [
@@ -270,6 +390,55 @@ export const certifications = [
     owner: "Syed Muhammad Bilal Ali",
     skills: ["SQA", "Selenium", "Testing"],
     color: "#f59e0b",
+  },
+  {
+    name: "Ultimate AWS Certified Solutions Architect Associate",
+    issuer: "Udemy",
+    owner: "Himaas Ali",
+    skills: ["AWS", "Cloud Architecture", "Solutions Architecture"],
+    color: "#ff9900",
+  },
+  {
+    name: "Technology Software Development Job Simulation",
+    issuer: "Citi Bank Certification",
+    owner: "Himaas Ali",
+    skills: ["Software Development", "Professional Simulation"],
+    color: "#2563eb",
+  },
+  {
+    name: "IBM Data Analyst",
+    issuer: "Coursera",
+    owner: "Himaas Ali",
+    skills: ["Data Analysis", "Analytics", "IBM"],
+    color: "#0f62fe",
+  },
+  {
+    name: "Developing Secure Software",
+    issuer: "The Linux Foundation",
+    owner: "Himaas Ali",
+    skills: ["Secure Software", "Application Security"],
+    color: "#f59e0b",
+  },
+  {
+    name: "Lean Six Sigma Yellow Belt",
+    issuer: "Anexas Europe Certification",
+    owner: "Himaas Ali",
+    skills: ["Lean Six Sigma", "Process Improvement"],
+    color: "#eab308",
+  },
+  {
+    name: "AZ-500 Microsoft Azure Security Exam Certification",
+    issuer: "Udemy",
+    owner: "Himaas Ali",
+    skills: ["Azure Security", "Cloud Security"],
+    color: "#0078d4",
+  },
+  {
+    name: "Programming in Blazor - ASP.NET Core 5",
+    issuer: "Training Certification",
+    owner: "Himaas Ali",
+    skills: ["Blazor", "ASP.NET Core 5", "Web Development"],
+    color: "#7c3aed",
   },
 ];
 

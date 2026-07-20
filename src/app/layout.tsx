@@ -18,7 +18,7 @@ export default function RootLayout({
     <html lang="en" className="dark" suppressHydrationWarning>
       <body className="font-sans" suppressHydrationWarning>
         <Navbar />
-        <main>{children}</main>
+        <main className="relative z-10">{children}</main>
         <Footer />
       </body>
     </html>

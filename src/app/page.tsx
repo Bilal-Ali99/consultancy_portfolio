@@ -5,10 +5,12 @@ import { Certifications } from "@/components/Certifications";
 import { Testimonials } from "@/components/Testimonials";
 import { Contact } from "@/components/Contact";
 import { UpworkBanner } from "@/components/UpworkBanner";
+import { ThreeScene } from "@/components/ThreeScene";
 
 export default function Home() {
   return (
     <>
+      <ThreeScene />
       <UpworkBanner />
       <Hero />
       <Portfolio />

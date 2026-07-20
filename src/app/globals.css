@@ -6,6 +6,10 @@
   html {
     scroll-behavior: smooth;
   }
+
+  [id] {
+    scroll-margin-top: 96px;
+  }
   
   body {
     @apply bg-background-primary text-text-primary antialiased;
