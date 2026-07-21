@@ -27,10 +27,27 @@
   }
   
   .glass-card {
-    @apply bg-background-elevated/80 backdrop-blur-md border border-white/5 rounded-2xl;
+    @apply bg-background-card/80 backdrop-blur-md border border-black/10 rounded-2xl shadow-sm;
   }
   
   .section-padding {
     @apply px-6 md:px-12 lg:px-24 xl:px-32;
+  }
+
+  .marquee-track {
+    animation: marquee-scroll 36s linear infinite;
+  }
+
+  .marquee-track:hover {
+    animation-play-state: paused;
+  }
+}
+
+@keyframes marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
   }
 }

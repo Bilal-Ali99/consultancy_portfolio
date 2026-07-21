@@ -6,6 +6,9 @@ import { Testimonials } from "@/components/Testimonials";
 import { Contact } from "@/components/Contact";
 import { UpworkBanner } from "@/components/UpworkBanner";
 import { ThreeScene } from "@/components/ThreeScene";
+import { Services } from "@/components/Services";
+import { TechStack } from "@/components/TechStack";
+import { WhyChooseUs } from "@/components/WhyChooseUs";
 
 export default function Home() {
   return (
@@ -13,6 +16,9 @@ export default function Home() {
       <ThreeScene />
       <UpworkBanner />
       <Hero />
+      <Services />
+      <TechStack />
+      <WhyChooseUs />
       <Portfolio />
       <About />
       <Certifications />

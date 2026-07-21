@@ -4,7 +4,7 @@ import { contactInfo, siteInfo } from "@/data/siteContent";
 
 export function Footer() {
   return (
-    <footer className="border-t border-white/5 bg-background-elevated">
+    <footer className="border-t border-black/10 bg-background-elevated">
       <div className="section-padding py-12 max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="flex items-center gap-2">

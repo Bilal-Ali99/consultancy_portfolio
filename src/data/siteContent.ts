@@ -89,15 +89,9 @@ export const people: Person[] = [
         title: "Junior Python Developer",
         organization: "Delivery Devs",
         highlights: [
-          "Built a complete Donation Management System in ERPNext covering Donation Orders, Donors, Donation Boxes, Coupon Books, Coupon Inventory, and Sponsorship Allocation.",
-          "Integrated donation workflows with ERPNext Accounts via automated Journal Entry creation and Chart of Accounts mapping.",
-          "Implemented sponsorship allocation for student and prisoner programs with quantity, duration, and amount tracking.",
-          "Developed cash denomination validation, box issuance and reissuance flows, and donation source account mapping.",
-          "Created custom reports for donation balances, coupon inventory, and volunteer assignment.",
-          "Customized HR and Payroll features in a separate custom app to avoid modifying ERPNext core files.",
-          "Built a Bulk Attendance tool with background job execution, leave priority logic, and attendance correction.",
-          "Added Payroll Entry filters for Work Mode, City, Province, Region, and Madrasa for multi-location payroll processing.",
-          "Created custom HR master DocTypes including City, Province, Work Mode, Region, Madrasa, and Payroll Group.",
+          "Built ERPNext donation workflows covering donation orders, donors, boxes, coupon books, inventory, and sponsorship allocation.",
+          "Integrated donation processes with ERPNext Accounts through automated Journal Entry creation and Chart of Accounts mapping.",
+          "Customized HR and Payroll features through a separate custom app, including bulk attendance, payroll filters, and HR master data.",
         ],
       },
       {
@@ -105,10 +99,9 @@ export const people: Person[] = [
         title: "ERP Developer Intern",
         organization: "Delivery Devs",
         highlights: [
-          "Set up and configured Frappe Framework on Ubuntu, including bench CLI, site management, and development environments.",
-          "Built custom DocTypes with field validations, link fields, and child tables based on business requirements.",
-          "Developed web pages and portal configurations using Frappe's Website module for client-facing interfaces.",
-          "Assisted in requirements gathering, workflow documentation, and full-stack module development alongside functional and technical consultants.",
+          "Configured Frappe Framework on Ubuntu with bench CLI, site management, and development environments.",
+          "Built custom DocTypes with validations, link fields, and child tables based on business requirements.",
+          "Developed Frappe website and portal configurations for client-facing interfaces.",
         ],
       },
       {
@@ -116,8 +109,8 @@ export const people: Person[] = [
         title: "IT Manager",
         organization: "Pro Source Pvt Ltd",
         highlights: [
-          "Administered core IT infrastructure including network operations, VOIP and telephony, attendance and access control systems, and vendor/ISP coordination.",
-          "Ensured software compliance with data protection regulations and maintained accurate inventory records of IT assets.",
+          "Administered IT infrastructure, network operations, VOIP, attendance systems, access control, and vendor coordination.",
+          "Maintained software compliance, data protection practices, and IT asset inventory records.",
         ],
       },
       {
@@ -125,8 +118,8 @@ export const people: Person[] = [
         title: "Associate IT Manager",
         organization: "Global Resource Group",
         highlights: [
-          "Monitored network performance, enforced access policies, and supported adherence to data protection and privacy regulations.",
-          "Managed core IT infrastructure, maintained hardware inventory, and provided technical support for software and hardware issues.",
+          "Monitored network performance, enforced access policies, and supported data protection compliance.",
+          "Managed hardware inventory and supported software and hardware issue resolution.",
         ],
       },
     ],
@@ -138,7 +131,7 @@ export const people: Person[] = [
   },
   {
     name: "Himaas Ali",
-    roles: ["Cloud Architecture Consultant", "Software Engineer", "UI/UX"],
+    roles: ["Software Engineer", "UI/UX Designer", "AWS Cloud Practitioner"],
     location: "United Kingdom",
     bio: "Software Engineer and UI/UX-focused team member with project experience in medication management systems, AWS serverless applications, secure frontend delivery, real-time analytics, and cloud observability.",
     initials: "HA",
@@ -151,6 +144,7 @@ export const people: Person[] = [
       {
         group: "AWS & Cloud",
         items: [
+          "AWS Certified Cloud Practitioner",
           "AWS Lambda",
           "DynamoDB",
           "API Gateway",
@@ -178,6 +172,99 @@ export const people: Person[] = [
       linkedin: contactInfo.linkedin,
       upwork: contactInfo.upwork,
     },
+  },
+];
+
+export const services = [
+  {
+    title: "ERPNext & Frappe Development",
+    summary:
+      "Custom ERP modules, DocTypes, workflows, reports, hooks, patches, and accounting automation built around real business operations.",
+    capabilities: ["Custom apps", "DocTypes", "Script reports", "Journal Entry automation", "HR & Payroll"],
+  },
+  {
+    title: "AWS Cloud & Serverless Solutions",
+    summary:
+      "Serverless backends, secure static delivery, real-time processing, monitoring, and cost-aware cloud architecture.",
+    capabilities: ["Lambda", "DynamoDB", "API Gateway", "SNS", "CloudFront", "S3", "CloudWatch"],
+  },
+  {
+    title: "Software Engineering & Web Applications",
+    summary:
+      "Practical frontend and backend workflows for operational tools, dashboards, portals, and client-facing applications.",
+    capabilities: ["Application design", "Backend workflows", "Frontend delivery", "Portal interfaces"],
+  },
+  {
+    title: "UI/UX & Product Experience",
+    summary:
+      "User-focused interfaces shaped around clarity, simple flows, and practical interaction design for business tools.",
+    capabilities: ["UI/UX", "Experience design", "Interface structure", "Usability-focused layouts"],
+  },
+  {
+    title: "Data & Machine Learning",
+    summary:
+      "Python-based analysis, classification, clustering, reporting, and insight workflows for structured datasets.",
+    capabilities: ["Python", "Pandas", "NumPy", "Matplotlib", "Classification", "Clustering"],
+  },
+  {
+    title: "Infrastructure & Secure Delivery",
+    summary:
+      "Linux environments, access control, monitoring, deployment support, and secure software practices.",
+    capabilities: ["Ubuntu", "Git", "IAM", "WAF", "Secure software", "Monitoring"],
+  },
+];
+
+export const techStack = [
+  {
+    group: "Front-End",
+    items: ["React", "Next.js", "JavaScript", "TypeScript", "Tailwind CSS", "Blazor"],
+  },
+  {
+    group: "Back-End & ERP",
+    items: ["Python", "Frappe Framework", "ERPNext", "Node.js", "DocTypes", "REST APIs"],
+  },
+  {
+    group: "AWS & Cloud",
+    items: ["AWS Lambda", "DynamoDB", "API Gateway", "SNS", "CloudFront", "S3", "IAM", "VPC", "CloudWatch"],
+  },
+  {
+    group: "Data & Analytics",
+    items: ["Pandas", "NumPy", "Matplotlib", "Machine Learning", "Kinesis Data Streams"],
+  },
+  {
+    group: "Infrastructure & DevOps",
+    items: ["Ubuntu", "Git", "Bench CLI", "CloudFormation", "Terraform", "YAML", "HCL"],
+  },
+  {
+    group: "Design & Quality",
+    items: ["UI/UX", "Secure Software", "Selenium", "SQA", "Lean Six Sigma"],
+  },
+];
+
+export const whyChooseUs = [
+  {
+    title: "Real Business Context",
+    detail: "We shape solutions around the actual workflow, not only the screen or database structure.",
+  },
+  {
+    title: "ERP + Cloud Coverage",
+    detail: "The team combines ERPNext/Frappe delivery with AWS serverless and secure frontend delivery.",
+  },
+  {
+    title: "Clean Customization",
+    detail: "ERP work is built through custom apps and extension points so core files stay maintainable.",
+  },
+  {
+    title: "Transparent Delivery",
+    detail: "Work is broken into clear planning, build, review, and release steps so expectations stay visible.",
+  },
+  {
+    title: "User-Focused Interfaces",
+    detail: "Screens are designed for clarity, fast scanning, and practical daily use.",
+  },
+  {
+    title: "Measured Quality",
+    detail: "We consider validation, monitoring, security, and cost controls as part of delivery.",
   },
 ];
 
@@ -396,6 +483,13 @@ export const certifications = [
     issuer: "Udemy",
     owner: "Himaas Ali",
     skills: ["AWS", "Cloud Architecture", "Solutions Architecture"],
+    color: "#ff9900",
+  },
+  {
+    name: "AWS Certified Cloud Practitioner",
+    issuer: "Amazon Web Services",
+    owner: "Himaas Ali",
+    skills: ["AWS", "Cloud Foundations", "Cloud Practitioner"],
     color: "#ff9900",
   },
   {

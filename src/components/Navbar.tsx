@@ -7,7 +7,10 @@ import Link from "next/link";
 import { siteInfo } from "@/data/siteContent";
 
 const navLinks = [
-  { href: "#work", label: "Work" },
+  { href: "#services", label: "Services" },
+  { href: "#tech-stack", label: "Tech Stack" },
+  { href: "#why-choose-us", label: "Why Choose Us" },
+  { href: "#work", label: "Projects" },
   { href: "#about", label: "About" },
   { href: "#certifications", label: "Certifications" },
   { href: "#contact", label: "Contact" },
@@ -29,7 +32,7 @@ export function Navbar() {
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-background-primary/90 backdrop-blur-lg border-b border-white/5" : "bg-transparent"
+        isScrolled ? "bg-background-primary/90 backdrop-blur-lg border-b border-black/10 shadow-sm" : "bg-transparent"
       }`}
     >
       <nav className="section-padding flex items-center justify-between h-20 max-w-7xl mx-auto">
@@ -38,7 +41,7 @@ export function Navbar() {
           <span className="text-lg sm:text-xl font-bold tracking-tight">{siteInfo.shortBrandName}</span>
         </Link>
 
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden lg:flex items-center gap-6">
           {navLinks.map((link) => (
             <Link
               key={link.href}
@@ -58,7 +61,7 @@ export function Navbar() {
         </div>
 
         <button
-          className="md:hidden text-text-primary"
+          className="lg:hidden text-text-primary"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
           {isMobileMenuOpen ? <X /> : <Menu />}
@@ -71,7 +74,7 @@ export function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-background-elevated border-b border-white/5"
+            className="lg:hidden bg-background-elevated border-b border-black/10"
           >
             <div className="section-padding py-6 flex flex-col gap-4">
               {navLinks.map((link) => (

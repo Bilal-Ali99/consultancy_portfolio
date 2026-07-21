@@ -2,17 +2,17 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowUpRight, Calendar, Github, Linkedin, Mail, MapPin, Send } from "lucide-react";
+import { Calendar, Mail, MapPin, Send } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { contactInfo, siteInfo } from "@/data/siteContent";
 
 const contactSchema = z.object({
-  name: z.string().min(2, "Name must be at least 2 characters"),
+  name: z.string().min(4, "Name must be at least 4 characters"),
   email: z.string().email("Please enter a valid email"),
   projectType: z.enum(["ERPNext / Frappe", "Software Development", "UI/UX", "Machine Learning", "Other"]),
-  budget: z.enum(["$5k-$10k", "$10k-$25k", "$25k-$50k", "$50k+", "Not sure"]),
+  budget: z.enum(["GBP 5k-10k", "GBP 10k-25k", "GBP 25k-50k", "GBP 50k+", "Not sure"]),
   message: z.string().min(10, "Please provide more details about your project"),
 });
 
@@ -50,7 +50,7 @@ export function Contact() {
             Let&apos;s <span className="text-gradient">Work Together</span>
           </h2>
           <p className="text-text-secondary text-lg max-w-2xl">
-            Have an ERPNext, software, UI/UX, or data project in mind? Contact {siteInfo.brandName}
+            Have an ERPNext, software, UI/UX, or data project in mind? Contact us
             to start a conversation.
           </p>
         </motion.div>
@@ -88,49 +88,7 @@ export function Contact() {
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center flex-shrink-0">
-                    <Calendar className="w-5 h-5 text-accent" />
-                  </div>
-                  <div>
-                    <div className="text-sm text-text-muted mb-1">Availability</div>
-                    <p className="text-text-primary">{contactInfo.availability}</p>
-                  </div>
                 </div>
-              </div>
-            </div>
-
-            <div className="glass-card p-8 border-accent/20">
-              <h3 className="text-xl font-bold mb-3">Professional Links</h3>
-              <p className="text-text-secondary text-sm mb-5">
-                Review Bilal&apos;s profiles and project activity through the links below.
-              </p>
-              <div className="flex flex-col gap-3">
-                <a
-                  href={contactInfo.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-accent hover:text-accent-hover font-medium transition-colors"
-                >
-                  <Github className="w-4 h-4" />
-                  GitHub
-                </a>
-                <a
-                  href={contactInfo.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-accent hover:text-accent-hover font-medium transition-colors"
-                >
-                  <Linkedin className="w-4 h-4" />
-                  LinkedIn
-                </a>
-                <a
-                  href={contactInfo.upwork}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-accent hover:text-accent-hover font-medium transition-colors"
-                >
-                  Upwork Profile <ArrowUpRight className="w-4 h-4" />
-                </a>
               </div>
             </div>
           </motion.div>
@@ -157,7 +115,7 @@ export function Contact() {
                       <label className="block text-sm font-medium mb-2">Name</label>
                       <input
                         {...register("name")}
-                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg focus:border-accent focus:outline-none transition-colors text-text-primary"
+                        className="w-full px-4 py-3 bg-background-primary border border-black/10 rounded-lg focus:border-accent focus:outline-none transition-colors text-text-primary"
                         placeholder="Your name"
                       />
                       {errors.name && (
@@ -169,7 +127,7 @@ export function Contact() {
                       <input
                         {...register("email")}
                         type="email"
-                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg focus:border-accent focus:outline-none transition-colors text-text-primary"
+                        className="w-full px-4 py-3 bg-background-primary border border-black/10 rounded-lg focus:border-accent focus:outline-none transition-colors text-text-primary"
                         placeholder="you@company.com"
                       />
                       {errors.email && (
@@ -183,25 +141,24 @@ export function Contact() {
                       <label className="block text-sm font-medium mb-2">Project Type</label>
                       <select
                         {...register("projectType")}
-                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg focus:border-accent focus:outline-none transition-colors text-text-primary"
+                        className="w-full px-4 py-3 bg-background-primary border border-black/10 rounded-lg focus:border-accent focus:outline-none transition-colors text-text-primary"
                       >
                         <option value="ERPNext / Frappe">ERPNext / Frappe</option>
                         <option value="Software Development">Software Development</option>
                         <option value="UI/UX">UI/UX</option>
                         <option value="Machine Learning">Machine Learning</option>
-                        <option value="Other">Other</option>
                       </select>
                     </div>
                     <div>
                       <label className="block text-sm font-medium mb-2">Budget Range</label>
                       <select
                         {...register("budget")}
-                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg focus:border-accent focus:outline-none transition-colors text-text-primary"
+                        className="w-full px-4 py-3 bg-background-primary border border-black/10 rounded-lg focus:border-accent focus:outline-none transition-colors text-text-primary"
                       >
-                        <option value="$5k-$10k">$5k - $10k</option>
-                        <option value="$10k-$25k">$10k - $25k</option>
-                        <option value="$25k-$50k">$25k - $50k</option>
-                        <option value="$50k+">$50k+</option>
+                        <option value="GBP 5k-10k">GBP 5k - GBP 10k</option>
+                        <option value="GBP 10k-25k">GBP 10k - GBP 25k</option>
+                        <option value="GBP 25k-50k">GBP 25k - GBP 50k</option>
+                        <option value="GBP 50k+">GBP 50k+</option>
                         <option value="Not sure">Not sure yet</option>
                       </select>
                     </div>
@@ -212,7 +169,7 @@ export function Contact() {
                     <textarea
                       {...register("message")}
                       rows={5}
-                      className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg focus:border-accent focus:outline-none transition-colors text-text-primary resize-none"
+                      className="w-full px-4 py-3 bg-background-primary border border-black/10 rounded-lg focus:border-accent focus:outline-none transition-colors text-text-primary resize-none"
                       placeholder="Tell us about your project, goals, and timeline..."
                     />
                     {errors.message && (

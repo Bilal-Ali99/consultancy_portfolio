@@ -11,14 +11,14 @@ const config: Config = {
     extend: {
       colors: {
         background: {
-          primary: "#0a0a0f",
-          elevated: "#12121a",
-          card: "#1a1a25",
+          primary: "#ffffff",
+          elevated: "#f8fafc",
+          card: "#ffffff",
         },
         text: {
-          primary: "#f0f0f5",
-          secondary: "#8a8a9a",
-          muted: "#6b6b7b",
+          primary: "#111827",
+          secondary: "#4b5563",
+          muted: "#6b7280",
         },
         accent: {
           DEFAULT: "#6366f1",

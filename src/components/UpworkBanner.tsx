@@ -46,7 +46,7 @@ export function UpworkBanner() {
             </div>
             <button
               onClick={() => setIsVisible(false)}
-              className="p-1 hover:bg-white/10 rounded-full transition-colors"
+              className="p-1 hover:bg-black/[0.06] rounded-full transition-colors"
             >
               <X className="w-4 h-4 text-text-muted" />
             </button>

@@ -43,7 +43,7 @@ export function About() {
               >
                 <div
                   tabIndex={0}
-                  className="group relative min-h-[340px] md:min-h-[420px] overflow-hidden rounded-2xl border border-white/5 bg-background-primary outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                  className="group relative min-h-[280px] md:min-h-[340px] overflow-hidden rounded-2xl border border-black/10 bg-background-primary outline-none focus-visible:ring-2 focus-visible:ring-accent"
                   aria-label={person.imageAlt}
                 >
                   {person.imageSrc ? (
@@ -56,9 +56,9 @@ export function About() {
                     />
                   ) : (
                     <div className="absolute inset-0 flex items-center justify-center bg-[radial-gradient(circle_at_30%_20%,rgba(99,102,241,0.36),transparent_34%),radial-gradient(circle_at_75%_80%,rgba(245,158,11,0.22),transparent_30%),linear-gradient(135deg,#12121a,#0a0a0f)]">
-                      <div className="relative flex h-44 w-44 items-center justify-center rounded-full border border-white/10 bg-white/5 shadow-[0_24px_80px_rgba(99,102,241,0.18)]">
-                        <User className="absolute h-24 w-24 text-white/10" />
-                        <span className="relative text-5xl font-bold text-text-primary">{person.initials}</span>
+                      <div className="relative flex h-36 w-36 items-center justify-center rounded-full border border-white/10 bg-white/5 shadow-[0_24px_80px_rgba(99,102,241,0.18)]">
+                        <User className="absolute h-20 w-20 text-white/10" />
+                        <span className="relative text-4xl font-bold text-white">{person.initials}</span>
                       </div>
                     </div>
                   )}
@@ -66,18 +66,16 @@ export function About() {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
 
                   <div className="absolute left-6 right-6 bottom-6 transition-all duration-300 group-hover:translate-y-[-96px] group-focus:translate-y-[-96px]">
-                    <h3 className="text-3xl md:text-4xl font-bold">{person.name}</h3>
+                    <h3 className="text-2xl md:text-3xl font-bold text-white">{person.name}</h3>
                   </div>
 
                   <div className="absolute inset-x-6 bottom-6 translate-y-8 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 group-focus:translate-y-0 group-focus:opacity-100">
                     <div className="flex flex-wrap gap-2 mb-4">
-                      {person.roles.map((role) => (
-                        <span key={role} className="px-3 py-1 rounded-full bg-accent/20 text-accent text-xs font-medium">
-                          {role}
-                        </span>
-                      ))}
+                      <span className="px-3 py-1 rounded-full bg-accent/20 text-white text-xs font-medium">
+                        {person.roles.join(" / ")}
+                      </span>
                     </div>
-                    <p className="text-sm md:text-base text-text-secondary leading-relaxed max-w-xl">
+                    <p className="text-sm md:text-base text-white/80 leading-relaxed max-w-xl">
                       {person.bio}
                     </p>
                   </div>
@@ -86,7 +84,7 @@ export function About() {
                 <button
                   type="button"
                   onClick={() => setExpandedPerson(isExpanded ? null : person.name)}
-                  className="w-full rounded-2xl border border-white/10 bg-white/5 px-5 py-4 text-left transition-all hover:border-accent/30 hover:bg-white/10"
+                  className="w-full rounded-2xl border border-black/10 bg-background-card px-5 py-4 text-left shadow-sm transition-all hover:border-accent/30 hover:bg-background-elevated"
                   aria-expanded={isExpanded}
                 >
                   <div className="flex items-center justify-between gap-4">
@@ -130,7 +128,7 @@ function ProfileDetails({ person }: { person: Person }) {
           {person.location}
         </span>
         {(person.links.github || person.links.linkedin || person.links.upwork) && (
-          <span className="hidden sm:inline text-white/20">/</span>
+          <span className="hidden sm:inline text-black/20">/</span>
         )}
         {person.links.github && (
           <a href={person.links.github} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 hover:text-accent transition-colors">
@@ -159,7 +157,7 @@ function ProfileDetails({ person }: { person: Person }) {
             <h5 className="text-sm font-semibold text-text-primary mb-2">{skillGroup.group}</h5>
             <div className="flex flex-wrap gap-2">
               {skillGroup.items.map((skill) => (
-                <span key={skill} className="px-3 py-1 bg-white/5 border border-white/5 rounded-full text-sm text-text-muted">
+                <span key={skill} className="px-3 py-1 bg-black/[0.03] border border-black/10 rounded-full text-sm text-text-muted">
                   {skill}
                 </span>
               ))}
@@ -175,7 +173,7 @@ function ProfileDetails({ person }: { person: Person }) {
         </h4>
 
         {person.timeline.length > 0 ? (
-          <div className="space-y-7 relative before:absolute before:left-2 before:top-2 before:bottom-2 before:w-px before:bg-white/10">
+          <div className="space-y-7 relative before:absolute before:left-2 before:top-2 before:bottom-2 before:w-px before:bg-black/10">
             {person.timeline.map((item) => (
               <div key={`${item.title}-${item.period}`} className="relative pl-8">
                 <div className="absolute left-0 top-1.5 w-4 h-4 rounded-full bg-background-primary border-2 border-accent" />
@@ -193,7 +191,7 @@ function ProfileDetails({ person }: { person: Person }) {
             ))}
           </div>
         ) : (
-          <p className="rounded-xl border border-white/5 bg-white/5 p-4 text-sm text-text-secondary">
+          <p className="rounded-xl border border-black/10 bg-black/[0.03] p-4 text-sm text-text-secondary">
             Experience details coming soon.
           </p>
         )}

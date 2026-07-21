@@ -66,7 +66,7 @@ export function Hero() {
           </Link>
           <Link
             href="#contact"
-            className="px-8 py-4 border border-white/10 hover:border-white/20 text-text-primary font-medium rounded-full transition-all hover:bg-white/5"
+            className="px-8 py-4 border border-black/10 hover:border-black/20 text-text-primary font-medium rounded-full transition-all hover:bg-black/[0.03]"
           >
             Start a Conversation
           </Link>
@@ -78,7 +78,7 @@ export function Hero() {
         transition={{ duration: 2, repeat: Infinity }}
         className="absolute bottom-10 left-1/2 -translate-x-1/2"
       >
-        <div className="w-6 h-10 rounded-full border-2 border-white/20 flex justify-center pt-2">
+        <div className="w-6 h-10 rounded-full border-2 border-black/20 flex justify-center pt-2">
           <motion.div
             animate={{ y: [0, 12, 0], opacity: [1, 0, 1] }}
             transition={{ duration: 2, repeat: Infinity }}

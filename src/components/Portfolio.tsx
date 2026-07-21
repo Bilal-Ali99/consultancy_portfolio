@@ -27,11 +27,7 @@ const categoryIcons = {
 
 export function Portfolio() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-
-  const projectOwners = people.map((person) => ({
-    person,
-    projects: projects.filter((project) => project.owner === person.name),
-  }));
+  const marqueeProjects = [...projects, ...projects];
 
   return (
     <section id="work" className="relative bg-background-primary/90">
@@ -43,7 +39,7 @@ export function Portfolio() {
           className="mb-20"
         >
           <h2 className="text-4xl md:text-6xl font-bold mb-6">
-            Selected <span className="text-gradient">Work</span>
+            Our <span className="text-gradient">Projects</span>
           </h2>
           <p className="text-text-secondary text-lg max-w-2xl">
             Bilal and Himaas bring separate strengths across ERPNext, Frappe,
@@ -51,41 +47,49 @@ export function Portfolio() {
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-10 items-start">
-          {projectOwners.map(({ person, projects: ownerProjects }, ownerIndex) => (
-            <motion.div
-              key={person.name}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: ownerIndex * 0.12 }}
-              className="glass-card p-5 md:p-6"
-            >
-              <div className="mb-8">
-                <p className="text-sm text-accent font-mono mb-2">Portfolio Owner</p>
-                <h3 className="text-2xl md:text-3xl font-bold mb-3">{person.name}</h3>
-                <div className="flex flex-wrap gap-2">
-                  {person.roles.map((role) => (
-                    <span key={role} className="px-3 py-1 bg-accent/10 text-accent text-xs rounded-full">
-                      {role}
-                    </span>
-                  ))}
-                </div>
-              </div>
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mb-12 grid md:grid-cols-3 gap-5"
+        >
+          <div className="glass-card p-7 md:col-span-1">
+            <p className="text-sm text-text-muted mb-2">Delivered Projects</p>
+            <div className="text-5xl font-bold text-gradient">{projects.length.toString().padStart(2, "0")}</div>
+            <p className="mt-3 text-sm text-text-secondary">
+              Count updates automatically from the project data shown on the website.
+            </p>
+          </div>
+          <div className="glass-card p-7 md:col-span-2">
+            <p className="text-sm text-text-muted mb-2">Collaborative Portfolio</p>
+            <div className="flex flex-wrap gap-2">
+              {people.map((person) => (
+                <span key={person.name} className="rounded-full bg-accent/10 px-3 py-1 text-sm font-medium text-accent">
+                  {person.name}
+                </span>
+              ))}
+            </div>
+            <p className="mt-4 text-sm text-text-secondary">
+              Projects are presented as a shared studio portfolio, while each
+              case study still shows the individual owner.
+            </p>
+          </div>
+        </motion.div>
 
-              <div className="space-y-5">
-                {ownerProjects.map((project, index) => (
-                  <ProjectCard
-                    key={project.id}
-                    project={project}
-                    index={index}
-                    total={ownerProjects.length}
-                    onSelect={() => setSelectedProject(project)}
-                  />
-                ))}
-              </div>
-            </motion.div>
-          ))}
+        <div className="relative overflow-hidden py-4">
+          <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-20 bg-gradient-to-r from-background-primary to-transparent" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-20 bg-gradient-to-l from-background-primary to-transparent" />
+          <div className="marquee-track flex w-max gap-6">
+            {marqueeProjects.map((project, index) => (
+              <ProjectCard
+                key={`${project.id}-${index}`}
+                project={project}
+                index={index % projects.length}
+                total={projects.length}
+                onSelect={() => setSelectedProject(project)}
+              />
+            ))}
+          </div>
         </div>
       </div>
 
@@ -119,7 +123,7 @@ function ProjectCard({
       viewport={{ once: true }}
       whileHover={{ y: -6, rotateX: 2, rotateY: -2 }}
       transition={{ duration: 0.45, ease: "easeOut" }}
-      className="group w-full text-left rounded-2xl border border-white/5 bg-white/[0.035] overflow-hidden transition-all duration-300 hover:border-accent/30 hover:bg-white/[0.055]"
+      className="group w-[340px] shrink-0 text-left rounded-2xl border border-black/10 bg-background-card overflow-hidden shadow-sm transition-all duration-300 hover:border-accent/30 hover:bg-background-elevated sm:w-[520px]"
       onClick={onSelect}
     >
       <div className="grid sm:grid-cols-[132px_1fr] min-h-[220px]">
@@ -141,6 +145,8 @@ function ProjectCard({
             <span className="font-mono">0{index + 1}</span>
             <span>/</span>
             <span className="font-mono">0{total}</span>
+            <span>/</span>
+            <span>{project.owner}</span>
           </div>
 
           <h4 className="text-xl font-bold mb-3 group-hover:text-accent transition-colors">
@@ -152,14 +158,14 @@ function ProjectCard({
 
           <div className="flex flex-wrap gap-2 mb-5">
             {project.tech.slice(0, 5).map((tech) => (
-              <span key={tech} className="px-2.5 py-1 bg-white/5 rounded-full text-xs text-text-muted border border-white/5">
+              <span key={tech} className="px-2.5 py-1 bg-black/[0.03] rounded-full text-xs text-text-muted border border-black/10">
                 {tech}
               </span>
             ))}
           </div>
 
-          <span className="inline-flex items-center gap-2 text-accent text-sm font-medium">
-            View Case Study
+          <span className="inline-flex items-center gap-2 rounded-full bg-accent px-4 py-2 text-sm font-medium text-white">
+            Explore
             <ChevronRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
           </span>
         </div>
@@ -194,7 +200,7 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
           </div>
           <button
             onClick={onClose}
-            className="absolute top-4 right-4 p-2 bg-black/50 rounded-full hover:bg-black/70 transition-colors"
+            className="absolute top-4 right-4 p-2 bg-black/50 rounded-full text-white hover:bg-black/70 transition-colors"
           >
             <span className="sr-only">Close</span>
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -232,7 +238,7 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
 
           <div className="grid sm:grid-cols-3 gap-4">
             {project.highlights.map((highlight) => (
-              <div key={highlight.label} className="text-center p-6 bg-white/5 rounded-xl border border-white/5">
+              <div key={highlight.label} className="text-center p-6 bg-black/[0.03] rounded-xl border border-black/10">
                 <div className="text-2xl font-bold text-accent mb-2">{highlight.value}</div>
                 <div className="text-sm text-text-muted">{highlight.label}</div>
               </div>
@@ -240,7 +246,7 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
           </div>
 
           {(project.liveUrl || project.repoUrl) && (
-            <div className="flex gap-4 pt-4 border-t border-white/5">
+            <div className="flex gap-4 pt-4 border-t border-black/10">
               {project.liveUrl && (
                 <a
                   href={project.liveUrl}
@@ -257,7 +263,7 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
                   href={project.repoUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-6 py-3 border border-white/10 hover:border-white/20 rounded-full text-text-primary transition-all hover:bg-white/5"
+                  className="flex items-center gap-2 px-6 py-3 border border-black/10 hover:border-black/20 rounded-full text-text-primary transition-all hover:bg-black/[0.03]"
                 >
                   <Github className="w-4 h-4" />
                   View Code
