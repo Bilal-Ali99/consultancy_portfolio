@@ -62,7 +62,7 @@ function TechModule({
       </mesh>
       <mesh position={[-0.38, 0.02, 0.13]}>
         <boxGeometry args={[0.44, 0.06, 0.08]} />
-        <meshStandardMaterial color="#0a0a0f" roughness={0.5} />
+            <meshStandardMaterial color="#111827" roughness={0.5} />
       </mesh>
     </group>
   );
@@ -112,14 +112,14 @@ function SceneContent() {
       <group ref={groupRef}>
         <Float speed={prefersReducedMotion ? 0 : 1.4} rotationIntensity={0.35} floatIntensity={0.55}>
           <RoundedBox args={[2.35, 1.38, 0.16]} radius={0.08} smoothness={8} position={[0, 0.2, 0]}>
-            <meshStandardMaterial color="#171724" roughness={0.24} metalness={0.55} />
+            <meshStandardMaterial color="#e8ecff" roughness={0.28} metalness={0.25} />
           </RoundedBox>
           <RoundedBox args={[2.08, 1.08, 0.09]} radius={0.05} smoothness={8} position={[0, 0.25, 0.1]}>
             <meshStandardMaterial color="#6366f1" emissive="#6366f1" emissiveIntensity={0.12} roughness={0.38} />
           </RoundedBox>
           <mesh position={[0, -0.7, 0.08]} rotation={[0.22, 0, 0]}>
             <boxGeometry args={[2.75, 0.13, 0.95]} />
-            <meshStandardMaterial color="#222233" roughness={0.32} metalness={0.48} />
+            <meshStandardMaterial color="#c7d2fe" roughness={0.36} metalness={0.28} />
           </mesh>
         </Float>
 
@@ -143,7 +143,7 @@ function SceneContent() {
 
 export function ThreeScene() {
   return (
-    <div className="fixed inset-0 z-0 pointer-events-none opacity-35" aria-hidden="true">
+    <div className="fixed inset-0 z-0 pointer-events-none opacity-20" aria-hidden="true">
       <Canvas
         className="!pointer-events-none"
         style={{ pointerEvents: "none" }}

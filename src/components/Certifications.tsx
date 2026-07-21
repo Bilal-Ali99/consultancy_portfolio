@@ -1,21 +1,25 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { CheckCircle2, ChevronLeft, ChevronRight } from "lucide-react";
 import { certifications } from "@/data/siteContent";
 
 export function Certifications() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   const move = (direction: -1 | 1) => {
     setActiveIndex((current) => (current + direction + certifications.length) % certifications.length);
   };
 
-  const visibleCertifications = [-2, -1, 0, 1, 2].map((offset) => {
-    const index = (activeIndex + offset + certifications.length) % certifications.length;
-    return { cert: certifications[index], offset };
-  });
+  useEffect(() => {
+    cardRefs.current[activeIndex]?.scrollIntoView({
+      behavior: "smooth",
+      block: "nearest",
+      inline: "center",
+    });
+  }, [activeIndex]);
 
   return (
     <section id="certifications" className="section-padding py-32 bg-background-primary">
@@ -34,12 +38,12 @@ export function Certifications() {
           </p>
         </motion.div>
 
-        <div className="relative min-h-[520px] overflow-hidden">
-          <div className="absolute inset-x-0 top-6 flex items-center justify-between">
+        <div className="relative">
+          <div className="mb-8 flex items-center justify-center gap-4">
             <button
               type="button"
               onClick={() => move(-1)}
-              className="z-20 flex h-12 w-12 items-center justify-center rounded-full border border-black/10 bg-background-card shadow-sm transition-all hover:border-accent/30 hover:text-accent"
+              className="flex h-12 w-12 items-center justify-center rounded-full border border-black/10 bg-background-card shadow-sm transition-all hover:border-accent/30 hover:text-accent"
               aria-label="Previous certification"
             >
               <ChevronLeft className="h-5 w-5" />
@@ -47,56 +51,56 @@ export function Certifications() {
             <button
               type="button"
               onClick={() => move(1)}
-              className="z-20 flex h-12 w-12 items-center justify-center rounded-full border border-black/10 bg-background-card shadow-sm transition-all hover:border-accent/30 hover:text-accent"
+              className="flex h-12 w-12 items-center justify-center rounded-full border border-black/10 bg-background-card shadow-sm transition-all hover:border-accent/30 hover:text-accent"
               aria-label="Next certification"
             >
               <ChevronRight className="h-5 w-5" />
             </button>
           </div>
 
-          <div className="relative mx-auto h-[500px] max-w-5xl [perspective:1200px]">
-            {visibleCertifications.map(({ cert, offset }) => (
-            <motion.div
-              key={`${cert.name}-${offset}`}
-              animate={{
-                x: `${offset * 42}%`,
-                y: Math.abs(offset) * 30,
-                rotateY: offset * -24,
-                scale: offset === 0 ? 1 : 0.82,
-                opacity: Math.abs(offset) > 1 ? 0.35 : 1,
-                zIndex: 10 - Math.abs(offset),
-              }}
-              transition={{ type: "spring", stiffness: 180, damping: 24 }}
-              className="glass-card group absolute left-1/2 top-24 w-[300px] -translate-x-1/2 p-7 transition-all hover:border-black/20 sm:w-[420px]"
-            >
-              <div className="flex items-start justify-between mb-4">
-                <div
-                  className="w-12 h-12 rounded-xl flex items-center justify-center text-white font-bold text-lg"
-                  style={{ backgroundColor: cert.color }}
+          <div
+            className="scrollbar-hidden mx-auto flex max-w-6xl snap-x snap-mandatory gap-6 overflow-x-auto scroll-smooth px-[calc(50%-170px)] pb-8 pt-4 sm:px-[calc(50%-230px)]"
+          >
+            {certifications.map((cert, index) => {
+              const isActive = index === activeIndex;
+
+              return (
+                <motion.div
+                  key={cert.name}
+                  ref={(node) => {
+                    cardRefs.current[index] = node;
+                  }}
+                  animate={{
+                    scale: isActive ? 1 : 0.9,
+                    rotateY: isActive ? 0 : index < activeIndex ? 10 : -10,
+                    opacity: isActive ? 1 : 0.62,
+                  }}
+                  transition={{ type: "spring", stiffness: 150, damping: 22 }}
+                  className="glass-card group min-h-[300px] w-[340px] shrink-0 snap-center p-7 transition-all hover:border-black/20 sm:w-[460px]"
+                  onMouseEnter={() => setActiveIndex(index)}
                 >
-                  {cert.issuer[0]}
-                </div>
-                <span className="text-xs text-text-muted">{cert.owner}</span>
-              </div>
+                  <div className="mb-5 inline-flex rounded-full px-4 py-2 text-sm font-semibold text-white" style={{ backgroundColor: cert.color }}>
+                    {cert.issuer}
+                  </div>
 
-              <h3 className="text-xl font-bold mb-2 group-hover:text-accent transition-colors">
-                {cert.name}
-              </h3>
-              <p className="text-text-muted text-sm mb-4">{cert.issuer}</p>
+                  <h3 className="text-xl font-bold mb-5 group-hover:text-accent transition-colors">
+                    {cert.name}
+                  </h3>
 
-              <div className="flex flex-wrap gap-2">
-                {cert.skills.map((skill) => (
-                  <span key={skill} className="flex items-center gap-1 text-xs text-text-secondary bg-black/[0.03] px-2 py-1 rounded-full">
-                    <CheckCircle2 className="w-3 h-3 text-accent" />
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            </motion.div>
-            ))}
+                  <div className="flex flex-wrap gap-2">
+                    {cert.skills.map((skill) => (
+                      <span key={skill} className="flex items-center gap-1 text-xs text-text-secondary bg-black/[0.03] px-2 py-1 rounded-full">
+                        <CheckCircle2 className="w-3 h-3 text-accent" />
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </motion.div>
+              );
+            })}
           </div>
 
-          <div className="mt-2 flex justify-center gap-2">
+          <div className="flex justify-center gap-2">
             {certifications.map((cert, index) => (
               <button
                 key={cert.name}

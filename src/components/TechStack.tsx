@@ -81,14 +81,14 @@ export function TechStack() {
               className="glass-card p-6 md:p-7"
             >
               <h3 className="text-2xl font-bold mb-5">{group.group}</h3>
-              <div className="grid sm:grid-cols-2 gap-3">
+              <div className="grid grid-cols-3 gap-x-5 gap-y-7 sm:grid-cols-4">
                 {group.items.map((item, itemIndex) => {
                   const Icon = techIcons[item] ?? fallbackIcons[itemIndex % fallbackIcons.length];
 
                   return (
-                    <div key={item} className="flex items-center gap-3 rounded-xl border border-black/10 bg-black/[0.025] px-4 py-3">
-                      <Icon className="h-5 w-5 text-accent" />
-                      <span className="text-sm font-medium text-text-primary">{item}</span>
+                    <div key={item} className="flex min-h-20 flex-col items-center justify-start gap-2 text-center">
+                      <Icon className="h-8 w-8 text-accent" />
+                      <span className="text-xs font-medium leading-snug text-text-primary">{item}</span>
                     </div>
                   );
                 })}

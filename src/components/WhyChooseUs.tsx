@@ -7,12 +7,12 @@ import { whyChooseUs } from "@/data/siteContent";
 const whyIcons = [SearchCheck, Code2, ShieldCheck, ClipboardList, Users, CheckCircle2];
 
 const sdlcSteps = [
-  { title: "Plan", detail: "Backlog, scope, priorities", icon: ClipboardList },
-  { title: "Design", detail: "UX flow and architecture", icon: Users },
-  { title: "Build", detail: "Sprint implementation", icon: Code2 },
-  { title: "Review", detail: "Demo, QA, feedback", icon: SearchCheck },
-  { title: "Release", detail: "Deploy and monitor", icon: Rocket },
-  { title: "Improve", detail: "Next sprint learning", icon: GitBranch },
+  { title: "Plan", detail: "Backlog, scope, priorities", icon: ClipboardList, color: "#6366f1" },
+  { title: "Design", detail: "UX flow and architecture", icon: Users, color: "#ec4899" },
+  { title: "Build", detail: "Sprint implementation", icon: Code2, color: "#f59e0b" },
+  { title: "Review", detail: "Demo, QA, feedback", icon: SearchCheck, color: "#10b981" },
+  { title: "Release", detail: "Deploy and monitor", icon: Rocket, color: "#38bdf8" },
+  { title: "Improve", detail: "Next sprint learning", icon: GitBranch, color: "#8b5cf6" },
 ];
 
 export function WhyChooseUs() {
@@ -35,8 +35,8 @@ export function WhyChooseUs() {
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-[1fr_1.1fr] gap-10 items-center">
-          <div className="grid sm:grid-cols-2 gap-5">
+        <div className="space-y-12">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {whyChooseUs.map((item, index) => {
               const Icon = whyIcons[index % whyIcons.length];
 
@@ -77,21 +77,35 @@ export function WhyChooseUs() {
               </div>
             </div>
 
-            <div className="relative mx-auto grid max-w-2xl grid-cols-2 gap-4 sm:grid-cols-3">
+            <div className="relative overflow-x-auto pb-3">
+              <div className="flex min-w-[920px] items-center gap-3">
               {sdlcSteps.map((step, index) => {
                 const Icon = step.icon;
 
                 return (
-                  <div key={step.title} className="relative rounded-2xl border border-black/10 bg-background-primary p-4 text-center">
-                    <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-accent/10 text-accent">
+                  <div key={step.title} className="flex flex-1 items-center gap-3">
+                    <div className="relative min-h-44 flex-1 rounded-[2rem] border border-black/10 bg-background-primary p-5 text-center shadow-sm">
+                      <div
+                        className="absolute inset-x-6 top-0 h-1 rounded-b-full"
+                        style={{ backgroundColor: step.color }}
+                      />
+                    <div
+                      className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full text-white shadow-lg"
+                      style={{ backgroundColor: step.color }}
+                    >
                       <Icon className="h-6 w-6" />
                     </div>
-                    <div className="text-xs font-mono text-text-muted">0{index + 1}</div>
+                    <div className="text-xs font-mono text-text-muted">Sprint Step</div>
                     <h4 className="font-bold">{step.title}</h4>
-                    <p className="mt-1 text-xs text-text-secondary">{step.detail}</p>
+                    <p className="mt-2 text-xs text-text-secondary">{step.detail}</p>
+                    </div>
+                    {index < sdlcSteps.length - 1 && (
+                      <div className="h-0.5 w-8 shrink-0" style={{ backgroundColor: step.color }} />
+                    )}
                   </div>
                 );
               })}
+              </div>
             </div>
           </motion.div>
         </div>

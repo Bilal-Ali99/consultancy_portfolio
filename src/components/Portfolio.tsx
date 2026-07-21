@@ -13,7 +13,7 @@ import {
   HeartPulse,
   Layers,
 } from "lucide-react";
-import { people, projects, type Project } from "@/data/siteContent";
+import { projects, type Project } from "@/data/siteContent";
 
 const categoryIcons = {
   ERPNext: Layers,
@@ -51,27 +51,13 @@ export function Portfolio() {
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-12 grid md:grid-cols-3 gap-5"
+          className="mb-12 max-w-sm"
         >
-          <div className="glass-card p-7 md:col-span-1">
+          <div className="glass-card p-7">
             <p className="text-sm text-text-muted mb-2">Delivered Projects</p>
             <div className="text-5xl font-bold text-gradient">{projects.length.toString().padStart(2, "0")}</div>
             <p className="mt-3 text-sm text-text-secondary">
               Count updates automatically from the project data shown on the website.
-            </p>
-          </div>
-          <div className="glass-card p-7 md:col-span-2">
-            <p className="text-sm text-text-muted mb-2">Collaborative Portfolio</p>
-            <div className="flex flex-wrap gap-2">
-              {people.map((person) => (
-                <span key={person.name} className="rounded-full bg-accent/10 px-3 py-1 text-sm font-medium text-accent">
-                  {person.name}
-                </span>
-              ))}
-            </div>
-            <p className="mt-4 text-sm text-text-secondary">
-              Projects are presented as a shared studio portfolio, while each
-              case study still shows the individual owner.
             </p>
           </div>
         </motion.div>
@@ -84,8 +70,6 @@ export function Portfolio() {
               <ProjectCard
                 key={`${project.id}-${index}`}
                 project={project}
-                index={index % projects.length}
-                total={projects.length}
                 onSelect={() => setSelectedProject(project)}
               />
             ))}
@@ -104,13 +88,9 @@ export function Portfolio() {
 
 function ProjectCard({
   project,
-  index,
-  total,
   onSelect,
 }: {
   project: Project;
-  index: number;
-  total: number;
   onSelect: () => void;
 }) {
   const CategoryIcon = categoryIcons[project.category];
@@ -142,11 +122,7 @@ function ProjectCard({
 
         <div className="p-5">
           <div className="flex items-center gap-2 text-text-muted text-xs mb-3">
-            <span className="font-mono">0{index + 1}</span>
-            <span>/</span>
-            <span className="font-mono">0{total}</span>
-            <span>/</span>
-            <span>{project.owner}</span>
+            <span>{project.category}</span>
           </div>
 
           <h4 className="text-xl font-bold mb-3 group-hover:text-accent transition-colors">

@@ -63,19 +63,18 @@ export function About() {
                     </div>
                   )}
 
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
 
-                  <div className="absolute left-6 right-6 bottom-6 transition-all duration-300 group-hover:translate-y-[-96px] group-focus:translate-y-[-96px]">
+                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 to-transparent p-6">
                     <h3 className="text-2xl md:text-3xl font-bold text-white">{person.name}</h3>
-                  </div>
-
-                  <div className="absolute inset-x-6 bottom-6 translate-y-8 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 group-focus:translate-y-0 group-focus:opacity-100">
-                    <div className="flex flex-wrap gap-2 mb-4">
-                      <span className="px-3 py-1 rounded-full bg-accent/20 text-white text-xs font-medium">
-                        {person.roles.join(" / ")}
-                      </span>
+                    <div className="mt-4 flex max-h-0 flex-wrap gap-2 overflow-hidden opacity-0 transition-all duration-300 group-hover:max-h-24 group-hover:opacity-100 group-focus:max-h-24 group-focus:opacity-100">
+                      {person.roles.map((role) => (
+                        <span key={role} className="px-3 py-1 rounded-full bg-white/15 text-white text-xs font-medium backdrop-blur-sm">
+                          {role}
+                        </span>
+                      ))}
                     </div>
-                    <p className="text-sm md:text-base text-white/80 leading-relaxed max-w-xl">
+                    <p className="mt-4 max-h-0 overflow-hidden text-sm md:text-base text-white/80 leading-relaxed opacity-0 transition-all duration-300 group-hover:max-h-40 group-hover:opacity-100 group-focus:max-h-40 group-focus:opacity-100">
                       {person.bio}
                     </p>
                   </div>

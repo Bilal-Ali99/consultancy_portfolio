@@ -4,10 +4,9 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Code2 } from "lucide-react";
 import Link from "next/link";
-import { siteInfo } from "@/data/siteContent";
+import { services, siteInfo } from "@/data/siteContent";
 
 const navLinks = [
-  { href: "#services", label: "Services" },
   { href: "#tech-stack", label: "Tech Stack" },
   { href: "#why-choose-us", label: "Why Choose Us" },
   { href: "#work", label: "Projects" },
@@ -42,6 +41,28 @@ export function Navbar() {
         </Link>
 
         <div className="hidden lg:flex items-center gap-6">
+          <div className="group relative py-7">
+            <button type="button" className="text-sm text-text-secondary transition-colors hover:text-text-primary">
+              Services
+            </button>
+            <div className="invisible absolute left-1/2 top-full z-50 w-[760px] -translate-x-1/2 rounded-2xl border border-black/10 bg-background-card p-5 opacity-0 shadow-2xl transition-all duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
+              <div className="grid grid-cols-2 gap-4">
+                {services.map((service) => (
+                  <div key={service.title} className="rounded-xl p-4 transition-colors hover:bg-black/[0.03]">
+                    <h3 className="font-semibold text-text-primary">{service.title}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-text-secondary">{service.summary}</p>
+                    <div className="mt-3 flex flex-wrap gap-2">
+                      {service.capabilities.slice(0, 4).map((capability) => (
+                        <span key={capability} className="text-xs text-accent">
+                          {capability}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
           {navLinks.map((link) => (
             <Link
               key={link.href}
@@ -77,6 +98,16 @@ export function Navbar() {
             className="lg:hidden bg-background-elevated border-b border-black/10"
           >
             <div className="section-padding py-6 flex flex-col gap-4">
+              <div>
+                <div className="mb-2 font-medium text-text-primary">Services</div>
+                <div className="grid gap-2">
+                  {services.map((service) => (
+                    <div key={service.title} className="text-sm text-text-secondary">
+                      {service.title}
+                    </div>
+                  ))}
+                </div>
+              </div>
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
