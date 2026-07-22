@@ -4,10 +4,10 @@ export const siteInfo = {
   tagline: "ERP, cloud, software, and user-focused digital experiences",
   heroTitle: "ERPNext, cloud, software, and UI/UX solutions for practical business needs",
   heroDescription:
-    "A two-person consultancy focused on ERPNext, Frappe customization, AWS serverless projects, software development, and user-focused digital experiences.",
+    "A consultancy focused on ERPNext, Frappe customization, AWS serverless projects, software development, and user-focused digital experiences.",
   metadataTitle: "Bilal & Himaas Studio | ERP, Cloud, Software & UI/UX Consultancy",
   metadataDescription:
-    "Two-person consultancy focused on ERPNext, Frappe, AWS serverless projects, software development, and UI/UX solutions.",
+    "A consultancy focused on ERPNext, Frappe, AWS serverless projects, software development, and UI/UX solutions.",
 };
 
 export const contactInfo = {
@@ -83,46 +83,7 @@ export const people: Person[] = [
         items: ["Git", "Bench CLI"],
       },
     ],
-    timeline: [
-      {
-        period: "June 2026 - Present",
-        title: "Junior Python Developer",
-        organization: "Delivery Devs",
-        highlights: [
-          "Built ERPNext donation workflows covering donation orders, donors, boxes, coupon books, inventory, and sponsorship allocation.",
-          "Integrated donation processes with ERPNext Accounts through automated Journal Entry creation and Chart of Accounts mapping.",
-          "Customized HR and Payroll features through a separate custom app, including bulk attendance, payroll filters, and HR master data.",
-        ],
-      },
-      {
-        period: "December 2025 - May 2026",
-        title: "ERP Developer Intern",
-        organization: "Delivery Devs",
-        highlights: [
-          "Configured Frappe Framework on Ubuntu with bench CLI, site management, and development environments.",
-          "Built custom DocTypes with validations, link fields, and child tables based on business requirements.",
-          "Developed Frappe website and portal configurations for client-facing interfaces.",
-        ],
-      },
-      {
-        period: "April 2024 - October 2025",
-        title: "IT Manager",
-        organization: "Pro Source Pvt Ltd",
-        highlights: [
-          "Administered IT infrastructure, network operations, VOIP, attendance systems, access control, and vendor coordination.",
-          "Maintained software compliance, data protection practices, and IT asset inventory records.",
-        ],
-      },
-      {
-        period: "August 2023 - April 2024",
-        title: "Associate IT Manager",
-        organization: "Global Resource Group",
-        highlights: [
-          "Monitored network performance, enforced access policies, and supported data protection compliance.",
-          "Managed hardware inventory and supported software and hardware issue resolution.",
-        ],
-      },
-    ],
+    timeline: [],
     links: {
       github: contactInfo.github,
       linkedin: contactInfo.linkedin,
@@ -131,7 +92,7 @@ export const people: Person[] = [
   },
   {
     name: "Himaas Ali",
-    roles: ["Software Engineer", "UI/UX Designer", "AWS Cloud Practitioner"],
+    roles: ["Cloud Architecture Consultant", "Software Engineer", "UI/UX"],
     location: "United Kingdom",
     bio: "Software Engineer and UI/UX-focused team member with project experience in medication management systems, AWS serverless applications, secure frontend delivery, real-time analytics, and cloud observability.",
     initials: "HA",
@@ -144,7 +105,6 @@ export const people: Person[] = [
       {
         group: "AWS & Cloud",
         items: [
-          "AWS Certified Cloud Practitioner",
           "AWS Lambda",
           "DynamoDB",
           "API Gateway",
@@ -174,6 +134,28 @@ export const people: Person[] = [
     },
   },
 ];
+
+export type Project = {
+  id: number;
+  title: string;
+  category:
+    | "ERPNext"
+    | "HR & Payroll"
+    | "Machine Learning"
+    | "Data Science"
+    | "Health Tech"
+    | "AWS Serverless"
+    | "AWS Analytics";
+  description: string;
+  problem: string;
+  solution: string;
+  tech: string[];
+  highlights: { label: string; value: string }[];
+  color: string;
+  owner: string;
+  liveUrl?: string;
+  repoUrl?: string;
+};
 
 export const services = [
   {
@@ -267,28 +249,6 @@ export const whyChooseUs = [
     detail: "We consider validation, monitoring, security, and cost controls as part of delivery.",
   },
 ];
-
-export type Project = {
-  id: number;
-  title: string;
-  category:
-    | "ERPNext"
-    | "HR & Payroll"
-    | "Machine Learning"
-    | "Data Science"
-    | "Health Tech"
-    | "AWS Serverless"
-    | "AWS Analytics";
-  description: string;
-  problem: string;
-  solution: string;
-  tech: string[];
-  highlights: { label: string; value: string }[];
-  color: string;
-  owner: string;
-  liveUrl?: string;
-  repoUrl?: string;
-};
 
 export const projects: Project[] = [
   {
@@ -483,13 +443,6 @@ export const certifications = [
     issuer: "Udemy",
     owner: "Himaas Ali",
     skills: ["AWS", "Cloud Architecture", "Solutions Architecture"],
-    color: "#ff9900",
-  },
-  {
-    name: "AWS Certified Cloud Practitioner",
-    issuer: "Amazon Web Services",
-    owner: "Himaas Ali",
-    skills: ["AWS", "Cloud Foundations", "Cloud Practitioner"],
     color: "#ff9900",
   },
   {
