@@ -52,7 +52,8 @@ export const people: Person[] = [
     location: "United Kingdom",
     bio: "Results-driven Python Developer with hands-on experience in ERPNext and Frappe Framework customization. Also has a background in IT infrastructure and exposure to Machine Learning through university projects and a short internship.",
     initials: "BA",
-    imageAlt: "Portrait placeholder for Syed Muhammad Bilal Ali",
+    imageSrc: "/images/team/bilal.png",
+    imageAlt: "Portrait of Syed Muhammad Bilal Ali",
     skills: [
       {
         group: "ERPNext & Frappe",
@@ -96,7 +97,8 @@ export const people: Person[] = [
     location: "United Kingdom",
     bio: "Software Engineer and UI/UX-focused team member with project experience in medication management systems, AWS serverless applications, secure frontend delivery, real-time analytics, and cloud observability.",
     initials: "HA",
-    imageAlt: "Portrait placeholder for Himaas Ali",
+    imageSrc: "/images/team/himaas.png",
+    imageAlt: "Portrait of Himaas Ali",
     skills: [
       {
         group: "Programming Languages",

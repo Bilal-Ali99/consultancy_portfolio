@@ -21,10 +21,6 @@ export function About() {
           <h2 className="text-4xl md:text-6xl font-bold mb-6">
             Meet the <span className="text-gradient">Team</span>
           </h2>
-          <p className="text-text-secondary text-lg max-w-2xl">
-            Two complementary profiles across ERPNext, Frappe, AWS cloud,
-            software engineering, UI/UX, and analytics.
-          </p>
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-8">
@@ -43,7 +39,7 @@ export function About() {
               >
                 <div
                   tabIndex={0}
-                  className="group relative min-h-[280px] md:min-h-[340px] overflow-hidden rounded-2xl border border-black/10 bg-background-primary outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                  className="group relative min-h-[680px] md:min-h-[740px] overflow-hidden rounded-2xl border border-black/10 bg-background-primary outline-none focus-visible:ring-2 focus-visible:ring-accent"
                   aria-label={person.imageAlt}
                 >
                   {person.imageSrc ? (

@@ -28,10 +28,6 @@ export function WhyChooseUs() {
           <h2 className="text-4xl md:text-6xl font-bold mb-6">
             Why <span className="text-gradient">Choose Us</span>
           </h2>
-          <p className="text-text-secondary text-lg max-w-3xl">
-            We combine practical engineering, clear communication, and structured
-            delivery so clients know what is being built and why it matters.
-          </p>
         </motion.div>
 
         <div className="space-y-10">
@@ -68,7 +64,6 @@ export function WhyChooseUs() {
           >
             <div className="mb-8 flex items-center justify-between gap-4">
               <div>
-                <p className="text-sm text-accent font-mono mb-2">Scrum SDLC</p>
                 <h3 className="text-2xl md:text-3xl font-bold">Sprint-Based Delivery Flow</h3>
               </div>
               <div className="hidden sm:flex h-14 w-14 items-center justify-center rounded-full bg-accent/10 text-accent">

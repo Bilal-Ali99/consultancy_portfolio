@@ -41,10 +41,6 @@ export function Portfolio() {
           <h2 className="text-4xl md:text-6xl font-bold mb-6">
             Our <span className="text-gradient">Projects</span>
           </h2>
-          <p className="text-text-secondary text-lg max-w-2xl">
-            We bring practical delivery across ERPNext, Frappe, AWS, health
-            technology, software engineering, and analytics.
-          </p>
         </motion.div>
 
         <motion.div
@@ -56,6 +52,9 @@ export function Portfolio() {
           <div className="glass-card p-7">
             <p className="text-sm text-text-muted mb-2">Delivered Projects</p>
             <div className="text-5xl font-bold text-gradient">{projects.length.toString().padStart(2, "0")}</div>
+            <p className="mt-3 text-sm text-text-secondary">
+              ERPNext, Frappe, AWS, health technology, software engineering, and analytics.
+            </p>
           </div>
           <div className="glass-card p-7">
             <p className="text-sm text-text-muted mb-2">Customer Satisfaction</p>
