@@ -74,14 +74,9 @@ export function TechStack() {
           viewport={{ once: true }}
           className="mb-16"
         >
-          <p className="text-sm text-accent font-mono mb-3">Tools & Technology</p>
           <h2 className="text-4xl md:text-6xl font-bold mb-6">
             Tech <span className="text-gradient">Stack</span>
           </h2>
-          <p className="text-text-secondary text-lg max-w-3xl">
-            Technologies are grouped by delivery area so clients can quickly see
-            the practical stack behind ERP, software, cloud, analytics, and design work.
-          </p>
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-6">

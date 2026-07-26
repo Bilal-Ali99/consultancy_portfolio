@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Code2 } from "lucide-react";
+import { Menu, X } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { services, siteInfo } from "@/data/siteContent";
 
@@ -36,8 +37,14 @@ export function Navbar() {
     >
       <nav className="section-padding flex items-center justify-between h-20 max-w-7xl mx-auto">
         <Link href="/" className="flex items-center gap-2 group">
-          <Code2 className="w-8 h-8 text-accent transition-transform group-hover:rotate-12" />
-          <span className="text-lg sm:text-xl font-bold tracking-tight">{siteInfo.shortBrandName}</span>
+          <Image
+            src="/images/brand/logo-primary.svg"
+            alt={`${siteInfo.brandName} logo`}
+            width={150}
+            height={40}
+            priority
+            className="h-10 w-auto transition-transform group-hover:scale-[1.02]"
+          />
         </Link>
 
         <div className="hidden lg:flex items-center gap-6">

@@ -1,4 +1,5 @@
-import { Code2, Github, Linkedin, Mail } from "lucide-react";
+import { Github, Linkedin, Mail } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { contactInfo, siteInfo } from "@/data/siteContent";
 
@@ -8,8 +9,13 @@ export function Footer() {
       <div className="section-padding py-12 max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="flex items-center gap-2">
-            <Code2 className="w-6 h-6 text-accent" />
-            <span className="font-bold">{siteInfo.brandName}</span>
+            <Image
+              src="/images/brand/logo-primary.svg"
+              alt={`${siteInfo.brandName} logo`}
+              width={170}
+              height={45}
+              className="h-10 w-auto"
+            />
           </div>
 
           <div className="flex items-center gap-6">

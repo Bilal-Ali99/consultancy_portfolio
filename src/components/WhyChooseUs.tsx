@@ -25,7 +25,6 @@ export function WhyChooseUs() {
           viewport={{ once: true }}
           className="mb-12"
         >
-          <p className="text-sm text-accent font-mono mb-3">Delivery Quality</p>
           <h2 className="text-4xl md:text-6xl font-bold mb-6">
             Why <span className="text-gradient">Choose Us</span>
           </h2>
