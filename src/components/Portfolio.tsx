@@ -42,8 +42,8 @@ export function Portfolio() {
             Our <span className="text-gradient">Projects</span>
           </h2>
           <p className="text-text-secondary text-lg max-w-2xl">
-            Bilal and Himaas bring separate strengths across ERPNext, Frappe,
-            AWS, health technology, software engineering, and analytics.
+            We bring practical delivery across ERPNext, Frappe, AWS, health
+            technology, software engineering, and analytics.
           </p>
         </motion.div>
 
@@ -51,13 +51,27 @@ export function Portfolio() {
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-12 max-w-sm"
+          className="mb-12 grid gap-5 md:grid-cols-3"
         >
           <div className="glass-card p-7">
             <p className="text-sm text-text-muted mb-2">Delivered Projects</p>
             <div className="text-5xl font-bold text-gradient">{projects.length.toString().padStart(2, "0")}</div>
             <p className="mt-3 text-sm text-text-secondary">
               Count updates automatically from the project data shown on the website.
+            </p>
+          </div>
+          <div className="glass-card p-7">
+            <p className="text-sm text-text-muted mb-2">Customer Satisfaction</p>
+            <div className="text-4xl font-bold text-gradient">Client-first</div>
+            <p className="mt-3 text-sm text-text-secondary">
+              Clear communication, practical workflows, and usable delivery are prioritized from the start.
+            </p>
+          </div>
+          <div className="glass-card p-7">
+            <p className="text-sm text-text-muted mb-2">Experience</p>
+            <div className="text-5xl font-bold text-gradient">3+ yrs</div>
+            <p className="mt-3 text-sm text-text-secondary">
+              Experience across ERP development, IT infrastructure, cloud projects, analytics, and UI/UX.
             </p>
           </div>
         </motion.div>

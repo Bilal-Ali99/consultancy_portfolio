@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { Calendar, ExternalLink, Github, Linkedin, MapPin, User } from "lucide-react";
+import { ExternalLink, Github, Linkedin, MapPin, User } from "lucide-react";
 import { people, type Person } from "@/data/siteContent";
 
 export function About() {
@@ -91,7 +91,7 @@ export function About() {
                       {isExpanded ? `Hide ${profileLabel} Profile` : `View ${profileLabel} Profile`}
                     </span>
                     <span className="text-sm text-text-muted">
-                      Skills & experience
+                      Skills & links
                     </span>
                   </div>
                 </button>
@@ -165,36 +165,6 @@ function ProfileDetails({ person }: { person: Person }) {
         ))}
       </div>
 
-      <div>
-        <h4 className="text-xl font-bold mb-6 flex items-center gap-2">
-          <Calendar className="w-5 h-5 text-accent" />
-          Experience
-        </h4>
-
-        {person.timeline.length > 0 ? (
-          <div className="space-y-7 relative before:absolute before:left-2 before:top-2 before:bottom-2 before:w-px before:bg-black/10">
-            {person.timeline.map((item) => (
-              <div key={`${item.title}-${item.period}`} className="relative pl-8">
-                <div className="absolute left-0 top-1.5 w-4 h-4 rounded-full bg-background-primary border-2 border-accent" />
-                <div className="text-xs text-accent font-mono mb-1">{item.period}</div>
-                <h5 className="font-semibold text-text-primary">{item.title}</h5>
-                <div className="text-sm text-text-muted mb-3">{item.organization}</div>
-                <ul className="space-y-2">
-                  {item.highlights.map((highlight) => (
-                    <li key={highlight} className="text-sm text-text-secondary leading-relaxed">
-                      {highlight}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        ) : (
-          <p className="rounded-xl border border-black/10 bg-black/[0.03] p-4 text-sm text-text-secondary">
-            Experience details coming soon.
-          </p>
-        )}
-      </div>
     </div>
   );
 }

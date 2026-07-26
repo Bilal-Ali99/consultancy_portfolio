@@ -47,7 +47,7 @@ export function WhyChooseUs() {
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.06 }}
-                  className="group relative flex h-44 w-44 rounded-full border border-black/10 bg-background-card p-5 shadow-sm transition-all hover:-translate-y-1 hover:border-accent/30 hover:shadow-xl sm:h-48 sm:w-48 lg:h-44 lg:w-44 xl:h-40 xl:w-40"
+                  className="group relative flex h-44 w-44 rounded-2xl border border-black/10 bg-background-card p-5 shadow-sm transition-all hover:-translate-y-1 hover:border-accent/30 hover:shadow-xl sm:h-48 sm:w-48 lg:h-44 lg:w-44 xl:h-40 xl:w-40"
                 >
                   <div className="flex h-full flex-col items-center justify-center text-center">
                     <Icon className="mb-3 h-8 w-9 text-accent" />

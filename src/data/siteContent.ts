@@ -99,31 +99,108 @@ export const people: Person[] = [
     imageAlt: "Portrait placeholder for Himaas Ali",
     skills: [
       {
-        group: "Software Engineering",
-        items: ["Application Design", "Backend Workflows", "Frontend Delivery", "UI/UX"],
+        group: "Programming Languages",
+        items: ["C#", "Java", "C", "HTML5", "CSS3", "YAML"],
       },
       {
-        group: "AWS & Cloud",
+        group: "Frameworks & Technologies",
         items: [
-          "AWS Lambda",
-          "DynamoDB",
-          "API Gateway",
-          "SNS",
-          "CloudFront",
-          "WAF",
-          "S3",
-          "IAM",
-          "VPC",
-          "CloudWatch",
+          ".NET",
+          "Blazor",
+          ".NET MAUI Blazor",
+          "ASP.NET",
+          "REST API Development",
+          "SCIM API",
         ],
       },
       {
-        group: "Data & Infrastructure",
-        items: ["Kinesis Data Streams", "CloudFormation", "Terraform", "Python", "YAML", "HCL"],
+        group: "Databases",
+        items: ["SQL", "SQL Server", "NoSQL", "MongoDB", "DynamoDB"],
       },
       {
-        group: "Security & Development",
-        items: ["Secure Software", "Azure Security", "Blazor", "ASP.NET Core 5", "Data Analytics"],
+        group: "Cloud Platforms",
+        items: [
+          "Amazon Web Services (AWS)",
+          "EC2",
+          "S3",
+          "DynamoDB",
+          "IAM",
+          "CloudFormation",
+          "Microsoft Azure",
+          "Azure Services",
+          "Azure DevOps",
+        ],
+      },
+      {
+        group: "DevOps & Infrastructure",
+        items: [
+          "CI/CD",
+          "Azure DevOps",
+          "Terraform",
+          "AWS CloudFormation",
+          "IIS (Internet Information Services)",
+          "Infrastructure as Code (IaC)",
+        ],
+      },
+      {
+        group: "Version Control",
+        items: ["Git", "GitHub", "Bitbucket"],
+      },
+      {
+        group: "API Development",
+        items: ["REST APIs", "SCIM API", "Swagger (OpenAPI)", "Postman"],
+      },
+      {
+        group: "Testing & Code Quality",
+        items: ["Unit Testing", "SonarQube", "Snyk", "Code Analysis", "Static Code Analysis"],
+      },
+      {
+        group: "Software Architecture",
+        items: [
+          "Microservices",
+          "Service-Oriented Development",
+          "API-First Development",
+          "Layered Architecture",
+          "Scalable Application Design",
+        ],
+      },
+      {
+        group: "Software Engineering Practices",
+        items: [
+          "Agile (Scrum)",
+          "Software Documentation",
+          "Error Handling",
+          "Debugging",
+          "Code Reviews",
+          "CI/CD Pipelines",
+        ],
+      },
+      {
+        group: "Development Tools & IDEs",
+        items: ["Visual Studio", "Visual Studio Code", "IntelliJ IDEA"],
+      },
+      {
+        group: "Collaboration & Project Management",
+        items: ["Jira", "Microsoft Office", "SharePoint"],
+      },
+      {
+        group: "UI/UX & Design Tools",
+        items: ["Figma", "Maze", "Balsamiq"],
+      },
+      {
+        group: "Data Analysis",
+        items: ["R Studio"],
+      },
+      {
+        group: "Technical Skills",
+        items: [
+          "Problem Solving",
+          "Software Debugging",
+          "Exception Handling",
+          "Technical Documentation",
+          "Application Deployment",
+          "Requirements Analysis",
+        ],
       },
     ],
     timeline: [],
@@ -212,6 +289,18 @@ export const techStack = [
   {
     group: "Data & Analytics",
     items: ["Pandas", "NumPy", "Matplotlib", "Machine Learning", "Kinesis Data Streams"],
+  },
+  {
+    group: "Database",
+    items: ["MongoDB", "SQL Server", "Oracle"],
+  },
+  {
+    group: "Software Security",
+    items: ["Snyk", "Sonar", "OWASP"],
+  },
+  {
+    group: "IDEs",
+    items: ["Visual Studio", "VS Code", "Notepad++"],
   },
   {
     group: "Infrastructure & DevOps",

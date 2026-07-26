@@ -17,7 +17,7 @@ export function Certifications() {
     cardRefs.current[activeIndex]?.scrollIntoView({
       behavior: "smooth",
       block: "nearest",
-      inline: "center",
+      inline: "start",
     });
   }, [activeIndex]);
 
@@ -33,9 +33,6 @@ export function Certifications() {
           <h2 className="text-4xl md:text-6xl font-bold mb-6">
             <span className="text-gradient">Certifications</span>
           </h2>
-          <p className="text-text-secondary text-lg max-w-2xl">
-            Current listed certifications are shown without invented credential IDs or verification links.
-          </p>
         </motion.div>
 
         <div className="relative">
@@ -59,7 +56,7 @@ export function Certifications() {
           </div>
 
           <div
-            className="scrollbar-hidden mx-auto flex max-w-6xl snap-x snap-mandatory gap-6 overflow-x-auto scroll-smooth px-[calc(50%-170px)] pb-8 pt-4 sm:px-[calc(50%-230px)]"
+            className="scrollbar-hidden flex max-w-full snap-x snap-mandatory gap-6 overflow-x-auto scroll-smooth pb-8 pt-4"
           >
             {certifications.map((cert, index) => {
               const isActive = index === activeIndex;
@@ -76,8 +73,7 @@ export function Certifications() {
                     opacity: isActive ? 1 : 0.62,
                   }}
                   transition={{ type: "spring", stiffness: 150, damping: 22 }}
-                  className="glass-card group min-h-[300px] w-[340px] shrink-0 snap-center p-7 transition-all hover:border-black/20 sm:w-[460px]"
-                  onMouseEnter={() => setActiveIndex(index)}
+                  className="glass-card group min-h-[300px] w-[340px] shrink-0 snap-start p-7 transition-all hover:border-black/20 sm:w-[460px]"
                 >
                   <div className="mb-5 inline-flex rounded-full px-4 py-2 text-sm font-semibold text-white" style={{ backgroundColor: cert.color }}>
                     {cert.issuer}
