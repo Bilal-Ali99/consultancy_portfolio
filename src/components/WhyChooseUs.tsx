@@ -1,10 +1,18 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
-import { CheckCircle2, ClipboardList, Code2, GitBranch, Rocket, SearchCheck, ShieldCheck, Users } from "lucide-react";
+import { ClipboardList, Code2, GitBranch, Rocket, SearchCheck, Users } from "lucide-react";
 import { whyChooseUs } from "@/data/siteContent";
 
-const whyIcons = [SearchCheck, Code2, ShieldCheck, ClipboardList, Users, CheckCircle2];
+const whyVisuals = [
+  "/images/why-choose-us/business-context.svg",
+  "/images/why-choose-us/erp-cloud.svg",
+  "/images/why-choose-us/customization.svg",
+  "/images/why-choose-us/transparent-delivery.svg",
+  "/images/why-choose-us/user-interfaces.svg",
+  "/images/why-choose-us/measured-quality.svg",
+];
 
 const sdlcSteps = [
   { title: "Plan", detail: "Backlog, scope, priorities", icon: ClipboardList, color: "#6366f1" },
@@ -31,9 +39,9 @@ export function WhyChooseUs() {
         </motion.div>
 
         <div className="space-y-10">
-          <div className="grid grid-cols-2 justify-items-center gap-4 md:grid-cols-3 xl:grid-cols-6">
+          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
             {whyChooseUs.map((item, index) => {
-              const Icon = whyIcons[index % whyIcons.length];
+              const visual = whyVisuals[index % whyVisuals.length];
 
               return (
                 <motion.div
@@ -42,12 +50,20 @@ export function WhyChooseUs() {
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.06 }}
-                  className="group relative flex h-44 w-44 rounded-2xl border border-black/10 bg-background-card p-5 shadow-sm transition-all hover:-translate-y-1 hover:border-accent/30 hover:shadow-xl sm:h-48 sm:w-48 lg:h-44 lg:w-44 xl:h-40 xl:w-40"
+                  className="group rounded-3xl border border-black/10 bg-background-card p-6 shadow-sm transition-all hover:-translate-y-1 hover:border-accent/30 hover:shadow-xl md:min-h-[300px]"
                 >
-                  <div className="flex h-full flex-col items-center justify-center text-center">
-                    <Icon className="mb-3 h-8 w-9 text-accent" />
-                    <h3 className="text-sm font-bold leading-tight">{item.title}</h3>
-                      <p className="mt-4 max-h-0 overflow-hidden text-[11px] leading-snug text-text-secondary opacity-0 transition-all duration-300 group-hover:max-h-24 group-hover:opacity-100 group-focus-within:max-h-24 group-focus-within:opacity-100">
+                  <div className="flex h-full flex-col">
+                    <div className="mb-6 overflow-hidden rounded-2xl bg-background-elevated">
+                      <Image
+                        src={visual}
+                        alt={`${item.title} visual`}
+                        width={640}
+                        height={360}
+                        className="h-40 w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+                    </div>
+                    <h3 className="text-xl font-bold leading-tight text-text-primary md:text-2xl">{item.title}</h3>
+                    <p className="mt-4 text-base leading-relaxed text-text-secondary">
                       {item.detail}
                     </p>
                   </div>

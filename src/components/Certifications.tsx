@@ -8,12 +8,18 @@ import { certifications } from "@/data/siteContent";
 export function Certifications() {
   const [activeIndex, setActiveIndex] = useState(0);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const hasInteracted = useRef(false);
 
   const move = (direction: -1 | 1) => {
+    hasInteracted.current = true;
     setActiveIndex((current) => (current + direction + certifications.length) % certifications.length);
   };
 
   useEffect(() => {
+    if (!hasInteracted.current) {
+      return;
+    }
+
     cardRefs.current[activeIndex]?.scrollIntoView({
       behavior: "smooth",
       block: "nearest",
@@ -101,7 +107,10 @@ export function Certifications() {
               <button
                 key={cert.name}
                 type="button"
-                onClick={() => setActiveIndex(index)}
+                onClick={() => {
+                  hasInteracted.current = true;
+                  setActiveIndex(index);
+                }}
                 className={`h-2.5 rounded-full transition-all ${
                   index === activeIndex ? "w-8 bg-accent" : "w-2.5 bg-black/15 hover:bg-black/30"
                 }`}

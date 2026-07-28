@@ -65,7 +65,10 @@ export function Portfolio() {
           </div>
           <div className="glass-card p-7">
             <p className="text-sm text-text-muted mb-2">Experience</p>
-            <div className="text-5xl font-bold text-gradient">3+ yrs</div>
+            <div className="flex items-end gap-2">
+              <span className="text-5xl font-bold leading-none text-gradient">3+</span>
+              <span className="pb-1 text-xl font-semibold text-accent">Years</span>
+            </div>
             <p className="mt-3 text-sm text-text-secondary">
               Experience across ERP development, IT infrastructure, cloud projects, analytics, and UI/UX.
             </p>
@@ -113,48 +116,36 @@ function ProjectCard({
       viewport={{ once: true }}
       whileHover={{ y: -6, rotateX: 2, rotateY: -2 }}
       transition={{ duration: 0.45, ease: "easeOut" }}
-      className="group w-[340px] shrink-0 text-left rounded-2xl border border-black/10 bg-background-card overflow-hidden shadow-sm transition-all duration-300 hover:border-accent/30 hover:bg-background-elevated sm:w-[520px]"
+      className="group w-[340px] shrink-0 rounded-2xl border border-black/10 bg-background-card p-5 text-left shadow-sm transition-all duration-300 hover:border-accent/30 hover:bg-background-elevated sm:w-[460px]"
       onClick={onSelect}
     >
-      <div className="grid sm:grid-cols-[132px_1fr] min-h-[220px]">
-        <div className="relative min-h-[150px] bg-background-elevated overflow-hidden">
-          <div className="absolute inset-0 opacity-25" style={{ backgroundColor: project.color }} />
-          <div className="absolute inset-0 flex items-center justify-center">
-            <CategoryIcon className="w-16 h-16 text-white/15 transition-transform duration-500 group-hover:scale-110" />
+      <div className="min-h-[245px]">
+        <div className="mb-4 flex items-center gap-3">
+          <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-accent/10 text-accent transition-transform duration-300 group-hover:scale-105">
+            <CategoryIcon className="h-5 w-5" />
           </div>
-          <span
-            className="absolute left-4 bottom-4 px-2.5 py-1 rounded-full text-[11px] font-medium text-white"
-            style={{ backgroundColor: project.color }}
-          >
-            {project.category}
-          </span>
+          <span className="text-xs font-medium text-text-muted">{project.category}</span>
         </div>
 
-        <div className="p-5">
-          <div className="flex items-center gap-2 text-text-muted text-xs mb-3">
-            <span>{project.category}</span>
-          </div>
+        <h4 className="text-xl font-bold mb-3 group-hover:text-accent transition-colors">
+          {project.title}
+        </h4>
+        <p className="text-sm text-text-secondary leading-relaxed mb-4">
+          {project.description}
+        </p>
 
-          <h4 className="text-xl font-bold mb-3 group-hover:text-accent transition-colors">
-            {project.title}
-          </h4>
-          <p className="text-sm text-text-secondary leading-relaxed mb-4">
-            {project.description}
-          </p>
-
-          <div className="flex flex-wrap gap-2 mb-5">
-            {project.tech.slice(0, 5).map((tech) => (
-              <span key={tech} className="px-2.5 py-1 bg-black/[0.03] rounded-full text-xs text-text-muted border border-black/10">
-                {tech}
-              </span>
-            ))}
-          </div>
-
-          <span className="inline-flex items-center gap-2 rounded-full bg-accent px-4 py-2 text-sm font-medium text-white">
-            Explore
-            <ChevronRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-          </span>
+        <div className="flex flex-wrap gap-2 mb-5">
+          {project.tech.slice(0, 5).map((tech) => (
+            <span key={tech} className="px-2.5 py-1 bg-black/[0.03] rounded-full text-xs text-text-muted border border-black/10">
+              {tech}
+            </span>
+          ))}
         </div>
+
+        <span className="inline-flex items-center gap-2 rounded-full bg-accent px-4 py-2 text-sm font-medium text-white">
+          Explore
+          <ChevronRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+        </span>
       </div>
     </motion.button>
   );
