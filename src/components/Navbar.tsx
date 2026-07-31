@@ -35,21 +35,21 @@ export function Navbar() {
         isScrolled ? "bg-background-primary/90 backdrop-blur-lg border-b border-black/10 shadow-sm" : "bg-transparent"
       }`}
     >
-      <nav className="section-padding flex items-center justify-between h-20 max-w-7xl mx-auto">
-        <Link href="/" className="flex items-center gap-2 group">
+      <nav className="flex h-24 w-full items-center justify-between px-5 md:px-8 lg:px-10">
+        <Link href="/" className="flex shrink-0 items-center gap-3 group">
           <Image
             src="/images/brand/logo-primary.svg"
             alt={`${siteInfo.brandName} logo`}
-            width={150}
-            height={40}
+            width={210}
+            height={80}
             priority
-            className="h-10 w-auto transition-transform group-hover:scale-[1.02]"
+            className="h-14 w-auto transition-transform group-hover:scale-[1.02]"
           />
         </Link>
 
-        <div className="hidden lg:flex items-center gap-6">
+        <div className="hidden flex-1 items-center justify-end gap-6 lg:flex">
           <div className="group relative py-7">
-            <button type="button" className="text-sm text-text-secondary transition-colors hover:text-text-primary">
+            <button type="button" className="text-sm font-semibold text-text-primary transition-colors hover:text-accent">
               Services
             </button>
             <div className="invisible absolute left-1/2 top-full z-50 w-[760px] -translate-x-1/2 rounded-2xl border border-black/10 bg-background-card p-5 opacity-0 shadow-2xl transition-all duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
@@ -74,7 +74,7 @@ export function Navbar() {
             <Link
               key={link.href}
               href={link.href}
-              className="text-sm text-text-secondary hover:text-text-primary transition-colors relative group"
+              className="relative text-sm font-semibold text-text-primary transition-colors hover:text-accent group"
             >
               {link.label}
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all group-hover:w-full" />
@@ -82,7 +82,7 @@ export function Navbar() {
           ))}
           <Link
             href="#contact"
-            className="px-5 py-2.5 bg-accent hover:bg-accent-hover text-white text-sm font-medium rounded-full transition-all hover:scale-105"
+            className="ml-2 px-5 py-2.5 bg-accent hover:bg-accent-hover text-white text-sm font-medium rounded-full transition-all hover:scale-105"
           >
             Work With Us
           </Link>
@@ -109,7 +109,7 @@ export function Navbar() {
                 <div className="mb-2 font-medium text-text-primary">Services</div>
                 <div className="grid gap-2">
                   {services.map((service) => (
-                    <div key={service.title} className="text-sm text-text-secondary">
+                    <div key={service.title} className="text-sm font-medium text-text-primary">
                       {service.title}
                     </div>
                   ))}
@@ -120,7 +120,7 @@ export function Navbar() {
                   key={link.href}
                   href={link.href}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-text-secondary hover:text-text-primary transition-colors"
+                  className="font-medium text-text-primary transition-colors hover:text-accent"
                 >
                   {link.label}
                 </Link>

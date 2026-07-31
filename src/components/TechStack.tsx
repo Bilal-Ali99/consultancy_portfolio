@@ -7,6 +7,7 @@ import {
   SiCss,
   SiFrappe,
   SiGit,
+  SiIntellijidea,
   SiJavascript,
   SiMongodb,
   SiNextdotjs,
@@ -32,6 +33,7 @@ import type { IconType } from "react-icons";
 const techIcons: Record<string, IconType> = {
   React: SiReact,
   "Next.js": SiNextdotjs,
+  "Node.js": SiNodedotjs,
   JavaScript: SiJavascript,
   TypeScript: SiTypescript,
   "Tailwind CSS": SiTailwindcss,
@@ -51,6 +53,7 @@ const techIcons: Record<string, IconType> = {
   "Visual Studio": FileCode2,
   "VS Code": FileCode2,
   "Notepad++": SiNotepadplusplus,
+  "IntelliJ IDEA": SiIntellijidea,
   Selenium: SiSelenium,
   Terraform: SiTerraform,
   "AWS Lambda": Cloud,
@@ -87,7 +90,9 @@ export function TechStack() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: groupIndex * 0.08 }}
-              className="glass-card p-6 md:p-7"
+              className={`glass-card p-6 md:p-7 ${
+                group.group === "Design & Quality" ? "lg:col-span-2 lg:mx-auto lg:w-[calc(50%-0.75rem)]" : ""
+              }`}
             >
               <h3 className="text-2xl font-bold mb-5">{group.group}</h3>
               <div className="grid grid-cols-3 gap-x-5 gap-y-7 sm:grid-cols-4">

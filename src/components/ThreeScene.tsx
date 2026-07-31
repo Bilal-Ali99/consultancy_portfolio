@@ -62,7 +62,51 @@ function TechModule({
       </mesh>
       <mesh position={[-0.38, 0.02, 0.13]}>
         <boxGeometry args={[0.44, 0.06, 0.08]} />
-            <meshStandardMaterial color="#111827" roughness={0.5} />
+        <meshStandardMaterial color="#111827" roughness={0.5} />
+      </mesh>
+    </group>
+  );
+}
+
+function RotatingBlock({
+  position,
+  color,
+  accent,
+  scale = 1,
+  speed = 1,
+  offset = 0,
+  isStatic,
+}: {
+  position: [number, number, number];
+  color: string;
+  accent: string;
+  scale?: number;
+  speed?: number;
+  offset?: number;
+  isStatic: boolean;
+}) {
+  const blockRef = useRef<Group>(null);
+
+  useFrame(({ clock }) => {
+    if (!blockRef.current || isStatic) return;
+
+    const time = clock.elapsedTime * speed + offset;
+    blockRef.current.rotation.x = 0.35 + Math.sin(time * 0.7) * 0.18;
+    blockRef.current.rotation.y = time * 0.48;
+    blockRef.current.rotation.z = -0.18 + Math.cos(time * 0.55) * 0.14;
+  });
+
+  return (
+    <group ref={blockRef} position={position} scale={scale}>
+      <RoundedBox args={[0.86, 0.86, 0.86]} radius={0.09} smoothness={7}>
+        <meshStandardMaterial color={color} emissive={color} emissiveIntensity={0.08} roughness={0.32} metalness={0.28} transparent opacity={0.72} />
+      </RoundedBox>
+      <RoundedBox args={[0.5, 0.5, 0.08]} radius={0.04} smoothness={5} position={[0, 0, 0.45]}>
+        <meshStandardMaterial color={accent} emissive={accent} emissiveIntensity={0.18} roughness={0.28} />
+      </RoundedBox>
+      <mesh rotation={[Math.PI / 2, 0, 0]}>
+        <torusGeometry args={[0.66, 0.018, 10, 72]} />
+        <meshStandardMaterial color={accent} emissive={accent} emissiveIntensity={0.18} roughness={0.45} transparent opacity={0.68} />
       </mesh>
     </group>
   );
@@ -80,6 +124,26 @@ function SceneContent() {
       [0, 1.05, -0.15],
       [1.2, -0.45, 0.3],
       [2.45, 0.72, -0.35],
+    ],
+    []
+  );
+
+  const rotatingBlocks = useMemo<
+    {
+      position: [number, number, number];
+      color: string;
+      accent: string;
+      scale: number;
+      speed: number;
+      offset: number;
+    }[]
+  >(
+    () => [
+      { position: [-3.25, 1.65, -1.85], color: "#c7d2fe", accent: "#6366f1", scale: 0.72, speed: 0.78, offset: 0.1 },
+      { position: [3.05, 1.45, -2.2], color: "#fed7aa", accent: "#f59e0b", scale: 0.58, speed: 0.9, offset: 1.2 },
+      { position: [-3.05, -1.7, -2.35], color: "#bae6fd", accent: "#38bdf8", scale: 0.64, speed: 0.68, offset: 2.4 },
+      { position: [2.95, -1.55, -1.95], color: "#bbf7d0", accent: "#10b981", scale: 0.68, speed: 0.82, offset: 3.1 },
+      { position: [0.15, -2.05, -2.8], color: "#fbcfe8", accent: "#ec4899", scale: 0.5, speed: 0.96, offset: 4.2 },
     ],
     []
   );
@@ -110,6 +174,24 @@ function SceneContent() {
       <pointLight position={[3, -1, 1]} intensity={0.9} color="#f59e0b" />
 
       <group ref={groupRef}>
+        {rotatingBlocks.map((block, index) => (
+          <Float key={`${block.color}-${index}`} speed={prefersReducedMotion ? 0 : 0.75 + index * 0.12} rotationIntensity={0.16} floatIntensity={0.25}>
+            <RotatingBlock
+              position={[
+                block.position[0] + progress * (index % 2 === 0 ? 0.45 : -0.35),
+                block.position[1] + Math.sin(progress * Math.PI + index) * 0.35,
+                block.position[2] - progress * 0.6,
+              ]}
+              color={block.color}
+              accent={block.accent}
+              scale={block.scale}
+              speed={block.speed}
+              offset={block.offset}
+              isStatic={prefersReducedMotion}
+            />
+          </Float>
+        ))}
+
         <Float speed={prefersReducedMotion ? 0 : 1.4} rotationIntensity={0.35} floatIntensity={0.55}>
           <RoundedBox args={[2.35, 1.38, 0.16]} radius={0.08} smoothness={8} position={[0, 0.2, 0]}>
             <meshStandardMaterial color="#e8ecff" roughness={0.28} metalness={0.25} />
@@ -143,7 +225,7 @@ function SceneContent() {
 
 export function ThreeScene() {
   return (
-    <div className="fixed inset-0 z-0 pointer-events-none opacity-20" aria-hidden="true">
+    <div className="fixed inset-0 z-0 pointer-events-none opacity-25" aria-hidden="true">
       <Canvas
         className="!pointer-events-none"
         style={{ pointerEvents: "none" }}

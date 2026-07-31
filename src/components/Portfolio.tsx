@@ -66,7 +66,7 @@ export function Portfolio() {
           <div className="glass-card p-7">
             <p className="text-sm text-text-muted mb-2">Experience</p>
             <div className="flex items-end gap-2">
-              <span className="text-5xl font-bold leading-none text-gradient">3+</span>
+              <span className="text-5xl font-bold leading-none text-gradient">5+</span>
               <span className="pb-1 text-xl font-semibold text-accent">Years</span>
             </div>
             <p className="mt-3 text-sm text-text-secondary">

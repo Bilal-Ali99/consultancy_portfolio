@@ -93,7 +93,7 @@ export const people: Person[] = [
   },
   {
     name: "Himaas Ali",
-    roles: ["Cloud Architecture Consultant", "Software Engineer", "UI/UX"],
+    roles: ["AWS Certified Cloud Practitioner", "Software Engineer", "UI/UX Designer"],
     location: "United Kingdom",
     bio: "Software Engineer and UI/UX-focused team member with project experience in medication management systems, AWS serverless applications, secure frontend delivery, real-time analytics, and cloud observability.",
     initials: "HA",
@@ -302,7 +302,7 @@ export const techStack = [
   },
   {
     group: "IDEs",
-    items: ["Visual Studio", "VS Code", "Notepad++"],
+    items: ["Visual Studio", "VS Code", "Notepad++", "IntelliJ IDEA"],
   },
   {
     group: "Infrastructure & DevOps",
@@ -338,6 +338,10 @@ export const whyChooseUs = [
   {
     title: "Measured Quality",
     detail: "We consider validation, monitoring, security, and cost controls as part of delivery.",
+  },
+  {
+    title: "Agile Methodology",
+    detail: "We work in practical iterations with planning, feedback, refinement, and regular delivery checkpoints.",
   },
 ];
 
