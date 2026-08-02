@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { Github, Linkedin, MapPin, User } from "lucide-react";
+import { MapPin, User } from "lucide-react";
 import { people, type Person } from "@/data/siteContent";
 
 export function About() {
@@ -126,21 +126,6 @@ function ProfileDetails({ person }: { person: Person }) {
           <MapPin className="w-4 h-4 text-accent" />
           {person.location}
         </span>
-        {(person.links.github || person.links.linkedin) && (
-          <span className="hidden sm:inline text-black/20">/</span>
-        )}
-        {person.links.github && (
-          <a href={person.links.github} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 hover:text-accent transition-colors">
-            <Github className="w-4 h-4" />
-            GitHub
-          </a>
-        )}
-        {person.links.linkedin && (
-          <a href={person.links.linkedin} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 hover:text-accent transition-colors">
-            <Linkedin className="w-4 h-4" />
-            LinkedIn
-          </a>
-        )}
       </div>
 
       <div className="space-y-6 mb-10">

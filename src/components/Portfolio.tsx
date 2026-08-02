@@ -9,7 +9,6 @@ import {
   Cloud,
   Database,
   ExternalLink,
-  Github,
   HeartPulse,
   Layers,
 } from "lucide-react";
@@ -222,30 +221,17 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
             ))}
           </div>
 
-          {(project.liveUrl || project.repoUrl) && (
+          {project.liveUrl && (
             <div className="flex gap-4 pt-4 border-t border-black/10">
-              {project.liveUrl && (
-                <a
-                  href={project.liveUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-6 py-3 bg-accent hover:bg-accent-hover rounded-full text-white font-medium transition-all hover:scale-105"
-                >
-                  <ExternalLink className="w-4 h-4" />
-                  Live Demo
-                </a>
-              )}
-              {project.repoUrl && (
-                <a
-                  href={project.repoUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-6 py-3 border border-black/10 hover:border-black/20 rounded-full text-text-primary transition-all hover:bg-black/[0.03]"
-                >
-                  <Github className="w-4 h-4" />
-                  View Code
-                </a>
-              )}
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 px-6 py-3 bg-accent hover:bg-accent-hover rounded-full text-white font-medium transition-all hover:scale-105"
+              >
+                <ExternalLink className="w-4 h-4" />
+                Live Demo
+              </a>
             </div>
           )}
         </div>

@@ -19,20 +19,42 @@ type ContactForm = z.infer<typeof contactSchema>;
 export function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<ContactForm>({
     resolver: zodResolver(contactSchema),
   });
 
-  const onSubmit = async (_data: ContactForm) => {
+  const onSubmit = async (data: ContactForm) => {
     setIsSubmitting(true);
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    setIsSubmitting(false);
-    setIsSubmitted(true);
+    setSubmitError(null);
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        const result = await response.json().catch(() => null);
+        throw new Error(result?.message ?? "Message could not be sent. Please try again.");
+      }
+
+      reset();
+      setIsSubmitted(true);
+    } catch (error) {
+      setSubmitError(error instanceof Error ? error.message : "Message could not be sent. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -140,6 +162,9 @@ export function Contact() {
                       </>
                     )}
                   </button>
+                  {submitError && (
+                    <p className="text-center text-sm text-red-500">{submitError}</p>
+                  )}
                 </form>
               )}
             </div>

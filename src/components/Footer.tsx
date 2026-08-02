@@ -1,7 +1,5 @@
-import { Github, Linkedin, Mail } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
-import { contactInfo, siteInfo } from "@/data/siteContent";
+import { siteInfo } from "@/data/siteContent";
 
 export function Footer() {
   return (
@@ -16,32 +14,6 @@ export function Footer() {
               height={45}
               className="h-10 w-auto"
             />
-          </div>
-
-          <div className="flex items-center gap-6">
-            <Link
-              href={contactInfo.github}
-              target="_blank"
-              className="text-text-muted hover:text-text-primary transition-colors"
-              aria-label="GitHub"
-            >
-              <Github className="w-5 h-5" />
-            </Link>
-            <Link
-              href={contactInfo.linkedin}
-              target="_blank"
-              className="text-text-muted hover:text-text-primary transition-colors"
-              aria-label="LinkedIn"
-            >
-              <Linkedin className="w-5 h-5" />
-            </Link>
-            <Link
-              href={`mailto:${contactInfo.email}`}
-              className="text-text-muted hover:text-text-primary transition-colors"
-              aria-label="Email"
-            >
-              <Mail className="w-5 h-5" />
-            </Link>
           </div>
 
           <p className="text-sm text-text-muted">

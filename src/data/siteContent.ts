@@ -1,11 +1,11 @@
 export const siteInfo = {
-  brandName: "Bilal & Himaas Studio",
-  shortBrandName: "B&H Studio",
+  brandName: "HB Solutions",
+  shortBrandName: "HB Solutions",
   tagline: "ERP, cloud, software, and user-focused digital experiences",
   heroTitle: "ERPNext, cloud, software, and UI/UX solutions for practical business needs",
   heroDescription:
     "A consultancy focused on ERPNext, Frappe customization, AWS serverless projects, software development, and user-focused digital experiences.",
-  metadataTitle: "Bilal & Himaas Studio | ERP, Cloud, Software & UI/UX Consultancy",
+  metadataTitle: "HB Solutions | ERP, Cloud, Software & UI/UX Consultancy",
   metadataDescription:
     "A consultancy focused on ERPNext, Frappe, AWS serverless projects, software development, and UI/UX solutions.",
 };
