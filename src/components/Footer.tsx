@@ -36,13 +36,6 @@ export function Footer() {
               <Linkedin className="w-5 h-5" />
             </Link>
             <Link
-              href={contactInfo.upwork}
-              target="_blank"
-              className="text-text-muted hover:text-text-primary transition-colors font-bold text-sm"
-            >
-              Upwork
-            </Link>
-            <Link
               href={`mailto:${contactInfo.email}`}
               className="text-text-muted hover:text-text-primary transition-colors"
               aria-label="Email"

@@ -3,11 +3,11 @@
 import { useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { ExternalLink, Github, Linkedin, MapPin, User } from "lucide-react";
+import { Github, Linkedin, MapPin, User } from "lucide-react";
 import { people, type Person } from "@/data/siteContent";
 
 export function About() {
-  const [expandedPerson, setExpandedPerson] = useState<string | null>(null);
+  const [showProfiles, setShowProfiles] = useState(false);
 
   return (
     <section id="about" className="section-padding py-32 bg-background-elevated/92">
@@ -25,9 +25,6 @@ export function About() {
 
         <div className="grid lg:grid-cols-2 gap-8">
           {people.map((person, index) => {
-            const isExpanded = expandedPerson === person.name;
-            const profileLabel = person.name.includes("Bilal") ? "Bilal" : person.name.split(" ")[0];
-
             return (
               <motion.article
                 key={person.name}
@@ -75,39 +72,45 @@ export function About() {
                     </p>
                   </div>
                 </div>
-
-                <button
-                  type="button"
-                  onClick={() => setExpandedPerson(isExpanded ? null : person.name)}
-                  className="w-full rounded-2xl border border-black/10 bg-background-card px-5 py-4 text-left shadow-sm transition-all hover:border-accent/30 hover:bg-background-elevated"
-                  aria-expanded={isExpanded}
-                >
-                  <div className="flex items-center justify-between gap-4">
-                    <span className="font-semibold text-text-primary">
-                      {isExpanded ? `Hide ${profileLabel} Profile` : `View ${profileLabel} Profile`}
-                    </span>
-                    <span className="text-sm text-text-muted">
-                      Skills & links
-                    </span>
-                  </div>
-                </button>
-
-                <AnimatePresence initial={false}>
-                  {isExpanded && (
-                    <motion.div
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: "auto" }}
-                      exit={{ opacity: 0, height: 0 }}
-                      transition={{ duration: 0.35, ease: "easeOut" }}
-                      className="overflow-hidden"
-                    >
-                      <ProfileDetails person={person} />
-                    </motion.div>
-                  )}
-                </AnimatePresence>
               </motion.article>
             );
           })}
+        </div>
+
+        <div
+          className="mt-8"
+          onMouseEnter={() => setShowProfiles(true)}
+          onMouseLeave={() => setShowProfiles(false)}
+        >
+          <button
+            type="button"
+            onFocus={() => setShowProfiles(true)}
+            onClick={() => setShowProfiles((current) => !current)}
+            className="group w-full rounded-2xl border border-black/10 bg-background-card px-6 py-5 text-left shadow-sm transition-all hover:border-accent/30 hover:bg-background-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+            aria-expanded={showProfiles}
+          >
+            <span className="text-lg font-semibold text-text-primary">
+              {showProfiles ? "Hide Team Profiles" : "View Team Profiles"}
+            </span>
+          </button>
+
+          <AnimatePresence initial={false}>
+            {showProfiles && (
+              <motion.div
+                initial={{ opacity: 0, height: 0, y: 16 }}
+                animate={{ opacity: 1, height: "auto", y: 0 }}
+                exit={{ opacity: 0, height: 0, y: 16 }}
+                transition={{ duration: 0.35, ease: "easeOut" }}
+                className="overflow-hidden"
+              >
+                <div className="grid gap-8 pt-8 lg:grid-cols-2">
+                  {people.map((person) => (
+                    <ProfileDetails key={person.name} person={person} />
+                  ))}
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </div>
     </section>
@@ -117,12 +120,13 @@ export function About() {
 function ProfileDetails({ person }: { person: Person }) {
   return (
     <div className="glass-card p-6 md:p-8">
+      <h3 className="mb-5 text-2xl font-bold text-text-primary">{person.name}</h3>
       <div className="flex flex-wrap items-center gap-3 mb-8 text-sm text-text-muted">
         <span className="inline-flex items-center gap-2">
           <MapPin className="w-4 h-4 text-accent" />
           {person.location}
         </span>
-        {(person.links.github || person.links.linkedin || person.links.upwork) && (
+        {(person.links.github || person.links.linkedin) && (
           <span className="hidden sm:inline text-black/20">/</span>
         )}
         {person.links.github && (
@@ -135,12 +139,6 @@ function ProfileDetails({ person }: { person: Person }) {
           <a href={person.links.linkedin} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 hover:text-accent transition-colors">
             <Linkedin className="w-4 h-4" />
             LinkedIn
-          </a>
-        )}
-        {person.links.upwork && (
-          <a href={person.links.upwork} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 hover:text-accent transition-colors">
-            <ExternalLink className="w-4 h-4" />
-            Upwork
           </a>
         )}
       </div>

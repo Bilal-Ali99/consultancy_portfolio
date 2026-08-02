@@ -81,7 +81,59 @@ export const people: Person[] = [
       },
       {
         group: "Tools",
-        items: ["Git", "Bench CLI"],
+        items: ["Bench CLI"],
+      },
+      {
+        group: "Databases",
+        items: ["SQL", "SQL Server", "NoSQL", "MongoDB", "DynamoDB"],
+      },
+      {
+        group: "Version Control",
+        items: ["Git", "GitHub", "Bitbucket"],
+      },
+      {
+        group: "API Development",
+        items: ["REST APIs", "SCIM API", "Swagger (OpenAPI)", "Postman"],
+      },
+      {
+        group: "Software Architecture",
+        items: [
+          "Microservices",
+          "Service-Oriented Development",
+          "API-First Development",
+          "Layered Architecture",
+          "Scalable Application Design",
+        ],
+      },
+      {
+        group: "Software Engineering Practices",
+        items: [
+          "Agile (Scrum)",
+          "Software Documentation",
+          "Error Handling",
+          "Debugging",
+          "Code Reviews",
+          "CI/CD Pipelines",
+        ],
+      },
+      {
+        group: "Development Tools & IDEs",
+        items: ["Visual Studio", "Visual Studio Code", "IntelliJ IDEA"],
+      },
+      {
+        group: "Collaboration & Project Management",
+        items: ["Jira", "Microsoft Office", "SharePoint"],
+      },
+      {
+        group: "Technical Skills",
+        items: [
+          "Problem Solving",
+          "Software Debugging",
+          "Exception Handling",
+          "Technical Documentation",
+          "Application Deployment",
+          "Requirements Analysis",
+        ],
       },
     ],
     timeline: [],
@@ -316,6 +368,10 @@ export const techStack = [
 
 export const whyChooseUs = [
   {
+    title: "Agile Methodology",
+    detail: "We work in practical iterations with planning, feedback, refinement, and regular delivery checkpoints.",
+  },
+  {
     title: "Real Business Context",
     detail: "We shape solutions around the actual workflow, not only the screen or database structure.",
   },
@@ -338,10 +394,6 @@ export const whyChooseUs = [
   {
     title: "Measured Quality",
     detail: "We consider validation, monitoring, security, and cost controls as part of delivery.",
-  },
-  {
-    title: "Agile Methodology",
-    detail: "We work in practical iterations with planning, feedback, refinement, and regular delivery checkpoints.",
   },
 ];
 

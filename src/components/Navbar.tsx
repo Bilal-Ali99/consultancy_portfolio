@@ -35,8 +35,8 @@ export function Navbar() {
         isScrolled ? "bg-background-primary/90 backdrop-blur-lg border-b border-black/10 shadow-sm" : "bg-transparent"
       }`}
     >
-      <nav className="flex h-24 w-full items-center justify-between px-5 md:px-8 lg:px-10">
-        <Link href="/" className="flex shrink-0 items-center gap-3 group">
+      <nav className="relative flex h-24 w-full items-center justify-between px-5 md:px-8 lg:px-10">
+        <Link href="/" className="flex shrink-0 items-center gap-3 group lg:absolute lg:left-10">
           <Image
             src="/images/brand/logo-primary.svg"
             alt={`${siteInfo.brandName} logo`}
@@ -47,7 +47,7 @@ export function Navbar() {
           />
         </Link>
 
-        <div className="hidden flex-1 items-center justify-end gap-6 lg:flex">
+        <div className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-5 lg:flex xl:gap-6">
           <div className="group relative py-7">
             <button type="button" className="text-sm font-semibold text-text-primary transition-colors hover:text-accent">
               Services
@@ -80,16 +80,17 @@ export function Navbar() {
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all group-hover:w-full" />
             </Link>
           ))}
-          <Link
-            href="#contact"
-            className="ml-2 px-5 py-2.5 bg-accent hover:bg-accent-hover text-white text-sm font-medium rounded-full transition-all hover:scale-105"
-          >
-            Work With Us
-          </Link>
         </div>
 
+        <Link
+          href="#contact"
+          className="absolute right-10 hidden rounded-full bg-accent px-5 py-2.5 text-sm font-medium text-white transition-all hover:scale-105 hover:bg-accent-hover lg:inline-flex"
+        >
+          Work With Us
+        </Link>
+
         <button
-          className="lg:hidden text-text-primary"
+          className="ml-auto text-text-primary lg:hidden"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
           {isMobileMenuOpen ? <X /> : <Menu />}

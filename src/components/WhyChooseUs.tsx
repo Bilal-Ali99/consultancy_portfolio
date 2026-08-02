@@ -4,8 +4,6 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import {
   ArrowDown,
-  ArrowLeft,
-  ArrowRight,
   ClipboardList,
   Code2,
   GitBranch,
@@ -18,13 +16,13 @@ import {
 import { whyChooseUs } from "@/data/siteContent";
 
 const whyVisuals = [
+  "/images/why-choose-us/agile-methodology.svg",
   "/images/why-choose-us/business-context.svg",
   "/images/why-choose-us/erp-cloud.svg",
   "/images/why-choose-us/customization.svg",
   "/images/why-choose-us/transparent-delivery.svg",
   "/images/why-choose-us/user-interfaces.svg",
   "/images/why-choose-us/measured-quality.svg",
-  "/images/why-choose-us/agile-methodology.svg",
 ];
 
 const sdlcSteps = [
@@ -36,9 +34,6 @@ const sdlcSteps = [
   { title: "Deployment", detail: "Releases the software to production or client environments.", icon: Rocket, color: "#8b5cf6" },
   { title: "Maintenance", detail: "Provides ongoing support, bug fixes, updates, and enhancements.", icon: Wrench, color: "#ef4444" },
 ];
-
-const topSdlcSteps = sdlcSteps.slice(0, 4);
-const bottomSdlcSteps = [sdlcSteps[6], sdlcSteps[5], sdlcSteps[4]];
 
 export function WhyChooseUs() {
   return (
@@ -107,41 +102,37 @@ export function WhyChooseUs() {
             </div>
 
             <div className="hidden lg:block">
-              <div className="relative overflow-hidden rounded-[2rem] border border-black/10 bg-[radial-gradient(circle_at_18%_18%,rgba(99,102,241,0.13),transparent_20rem),radial-gradient(circle_at_82%_78%,rgba(245,158,11,0.13),transparent_20rem),linear-gradient(135deg,rgba(255,255,255,0.92),rgba(248,250,252,0.86))] p-8">
-                <div className="grid grid-cols-4 gap-8">
-                  {topSdlcSteps.map((step, index) => (
-                    <div key={step.title} className="relative">
-                      <SdlcCard step={step} index={index} />
-                      {index < topSdlcSteps.length - 1 && <HorizontalConnector direction="right" color={step.color} />}
-                    </div>
+              <div className="relative overflow-hidden rounded-[2rem] border border-black/10 bg-[radial-gradient(circle_at_16%_20%,rgba(56,189,248,0.16),transparent_20rem),radial-gradient(circle_at_86%_28%,rgba(236,72,153,0.14),transparent_20rem),radial-gradient(circle_at_50%_100%,rgba(245,158,11,0.14),transparent_18rem),linear-gradient(135deg,rgba(255,255,255,0.96),rgba(248,250,252,0.9))] p-8 shadow-sm">
+                <div className="mb-8 flex items-end justify-between gap-6">
+                  <div>
+                    <h4 className="mt-2 text-2xl font-bold">From planning to maintainable production systems</h4>
+                  </div>
+                  <p className="max-w-sm text-sm leading-relaxed text-text-secondary">
+                    A clear lifecycle keeps scope, quality, release readiness, and post-launch support visible from the start.
+                  </p>
+                </div>
+
+                <div className="flex">
+                  {sdlcSteps.map((step, index) => (
+                    <ChevronPhase key={step.title} step={step} index={index} />
                   ))}
                 </div>
 
-                <div className="relative h-24">
-                  <motion.div
-                    initial={{ scaleY: 0 }}
-                    whileInView={{ scaleY: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.55, delay: 0.42 }}
-                    className="absolute right-[12.5%] top-3 h-16 w-1 origin-top rounded-full bg-gradient-to-b from-[#10b981] to-[#38bdf8]"
-                  />
-                  <motion.div
-                    initial={{ opacity: 0, y: -8 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.35, delay: 0.86 }}
-                    className="absolute bottom-1 right-[calc(12.5%-0.75rem)] flex h-6 w-6 items-center justify-center rounded-full bg-[#38bdf8] text-white shadow-lg"
-                  >
-                    <ArrowDown className="h-4 w-4" />
-                  </motion.div>
-                </div>
-
-                <div className="grid grid-cols-4 gap-8">
-                  {bottomSdlcSteps.map((step, index) => (
-                    <div key={step.title} className={`relative ${index === 0 ? "col-start-2" : ""}`}>
-                      {index > 0 && <HorizontalConnector direction="left" color={step.color} />}
-                      <SdlcCard step={step} index={topSdlcSteps.length + index} />
-                    </div>
+                <div className="mt-8 grid grid-cols-7 gap-4">
+                  {sdlcSteps.map((step, index) => (
+                    <motion.div
+                      key={step.title}
+                      initial={{ opacity: 0, y: 18 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.42, delay: index * 0.07 + 0.16 }}
+                      className="relative rounded-2xl border border-black/10 bg-white/80 p-4 shadow-sm backdrop-blur"
+                    >
+                      <div className="mb-3 text-xs font-bold text-text-muted">
+                        {String(index + 1).padStart(2, "0")}
+                      </div>
+                      <p className="text-xs leading-relaxed text-text-secondary">{step.detail}</p>
+                    </motion.div>
                   ))}
                 </div>
               </div>
@@ -194,7 +185,7 @@ export function WhyChooseUs() {
   );
 }
 
-function SdlcCard({
+function ChevronPhase({
   step,
   index,
 }: {
@@ -202,67 +193,36 @@ function SdlcCard({
   index: number;
 }) {
   const Icon = step.icon;
+  const isFirst = index === 0;
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0, x: -18 }}
+      whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.48, delay: index * 0.08, ease: "easeOut" }}
-      className="relative z-10 min-h-[218px] rounded-[1.75rem] border border-black/10 bg-white/90 p-5 text-center shadow-[0_24px_60px_rgba(15,23,42,0.08)] backdrop-blur"
+      transition={{ duration: 0.44, delay: index * 0.07, ease: "easeOut" }}
+      className={`relative min-h-[116px] flex-1 ${isFirst ? "" : "-ml-5"}`}
     >
-      <div className="absolute inset-x-7 top-0 h-1.5 rounded-b-full" style={{ backgroundColor: step.color }} />
       <div
-        className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-2xl text-white shadow-lg"
-        style={{ backgroundColor: step.color }}
+        className="flex h-full min-h-[116px] flex-col justify-center px-6 py-5 text-white shadow-[0_18px_34px_rgba(15,23,42,0.16)]"
+        style={{
+          backgroundColor: step.color,
+          clipPath: isFirst
+            ? "polygon(0 0, calc(100% - 30px) 0, 100% 50%, calc(100% - 30px) 100%, 0 100%)"
+            : "polygon(0 0, calc(100% - 30px) 0, 100% 50%, calc(100% - 30px) 100%, 0 100%, 30px 50%)",
+          paddingLeft: isFirst ? undefined : "2.75rem",
+        }}
       >
-        <Icon className="h-7 w-7" />
+        <div className="mb-2 flex items-center gap-2">
+          <Icon className="h-5 w-5 shrink-0" />
+          <span className="text-[10px] font-bold tracking-[0.24em] text-white/75">
+            {String(index + 1).padStart(2, "0")}
+          </span>
+        </div>
+        <h5 className="text-[11px] font-black uppercase leading-snug tracking-[0.12em] xl:text-xs">
+          {step.title}
+        </h5>
       </div>
-      <motion.h4
-        initial={{ opacity: 0, y: 8 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.35, delay: index * 0.08 + 0.12 }}
-        className="text-lg font-bold leading-tight"
-      >
-        {step.title}
-      </motion.h4>
-      <motion.p
-        initial={{ opacity: 0, y: 8 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.35, delay: index * 0.08 + 0.18 }}
-        className="mt-3 text-sm leading-relaxed text-text-secondary"
-      >
-        {step.detail}
-      </motion.p>
-    </motion.div>
-  );
-}
-
-function HorizontalConnector({
-  direction,
-  color,
-}: {
-  direction: "left" | "right";
-  color: string;
-}) {
-  const ArrowIcon = direction === "right" ? ArrowRight : ArrowLeft;
-  const positionClass = direction === "right" ? "-right-8" : "-left-8";
-  const arrowClass = direction === "right" ? "-right-3" : "-left-3";
-
-  return (
-    <motion.div
-      initial={{ scaleX: 0, opacity: 0 }}
-      whileInView={{ scaleX: 1, opacity: 1 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.45, delay: 0.35 }}
-      className={`absolute top-1/2 z-20 h-1 w-8 origin-center rounded-full ${positionClass}`}
-      style={{ backgroundColor: color }}
-    >
-      <span className={`absolute -top-2.5 flex h-6 w-6 items-center justify-center rounded-full text-white shadow-md ${arrowClass}`} style={{ backgroundColor: color }}>
-        <ArrowIcon className="h-4 w-4" />
-      </span>
     </motion.div>
   );
 }

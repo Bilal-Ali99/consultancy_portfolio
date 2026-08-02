@@ -2,17 +2,15 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Calendar, Mail, MapPin, Send } from "lucide-react";
+import { Send } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { contactInfo, siteInfo } from "@/data/siteContent";
 
 const contactSchema = z.object({
   name: z.string().min(4, "Name must be at least 4 characters"),
   email: z.string().email("Please enter a valid email"),
   projectType: z.enum(["ERPNext / Frappe", "Software Development", "UI/UX", "Machine Learning", "Other"]),
-  budget: z.enum(["GBP 5k-10k", "GBP 10k-25k", "GBP 25k-50k", "GBP 50k+", "Not sure"]),
   message: z.string().min(10, "Please provide more details about your project"),
 });
 
@@ -55,49 +53,11 @@ export function Contact() {
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-5 gap-16">
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="lg:col-span-2 space-y-8"
-          >
-            <div className="glass-card p-8">
-              <h3 className="text-xl font-bold mb-6">Contact Information</h3>
-              <div className="space-y-6">
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center flex-shrink-0">
-                    <Mail className="w-5 h-5 text-accent" />
-                  </div>
-                  <div>
-                    <div className="text-sm text-text-muted mb-1">Email</div>
-                    <a href={`mailto:${contactInfo.email}`} className="text-text-primary hover:text-accent transition-colors">
-                      {contactInfo.email}
-                    </a>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center flex-shrink-0">
-                    <MapPin className="w-5 h-5 text-accent" />
-                  </div>
-                  <div>
-                    <div className="text-sm text-text-muted mb-1">Location</div>
-                    <p className="text-text-primary">{contactInfo.location}</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-4">
-                </div>
-              </div>
-            </div>
-          </motion.div>
-
+        <div className="mx-auto max-w-4xl">
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="lg:col-span-3"
           >
             <div className="glass-card p-8">
               {isSubmitted ? (
@@ -136,32 +96,18 @@ export function Contact() {
                     </div>
                   </div>
 
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div>
-                      <label className="block text-sm font-medium mb-2">Project Type</label>
-                      <select
-                        {...register("projectType")}
-                        className="w-full px-4 py-3 bg-background-primary border border-black/10 rounded-lg focus:border-accent focus:outline-none transition-colors text-text-primary"
-                      >
-                        <option value="ERPNext / Frappe">ERPNext / Frappe</option>
-                        <option value="Software Development">Software Development</option>
-                        <option value="UI/UX">UI/UX</option>
-                        <option value="Machine Learning">Machine Learning</option>
-                      </select>
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium mb-2">Budget Range</label>
-                      <select
-                        {...register("budget")}
-                        className="w-full px-4 py-3 bg-background-primary border border-black/10 rounded-lg focus:border-accent focus:outline-none transition-colors text-text-primary"
-                      >
-                        <option value="GBP 5k-10k">GBP 5k - GBP 10k</option>
-                        <option value="GBP 10k-25k">GBP 10k - GBP 25k</option>
-                        <option value="GBP 25k-50k">GBP 25k - GBP 50k</option>
-                        <option value="GBP 50k+">GBP 50k+</option>
-                        <option value="Not sure">Not sure yet</option>
-                      </select>
-                    </div>
+                  <div>
+                    <label className="block text-sm font-medium mb-2">Project Type</label>
+                    <select
+                      {...register("projectType")}
+                      className="w-full px-4 py-3 bg-background-primary border border-black/10 rounded-lg focus:border-accent focus:outline-none transition-colors text-text-primary"
+                    >
+                      <option value="ERPNext / Frappe">ERPNext / Frappe</option>
+                      <option value="Software Development">Software Development</option>
+                      <option value="UI/UX">UI/UX</option>
+                      <option value="Machine Learning">Machine Learning</option>
+                      <option value="Other">Other</option>
+                    </select>
                   </div>
 
                   <div>

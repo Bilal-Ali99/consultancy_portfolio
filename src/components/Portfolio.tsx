@@ -51,7 +51,7 @@ export function Portfolio() {
         >
           <div className="glass-card p-7">
             <p className="text-sm text-text-muted mb-2">Delivered Projects</p>
-            <div className="text-5xl font-bold text-gradient">{projects.length.toString().padStart(2, "0")}</div>
+            <div className="text-5xl font-bold text-gradient">20+</div>
             <p className="mt-3 text-sm text-text-secondary">
               ERPNext, Frappe, AWS, health technology, software engineering, and analytics.
             </p>
