@@ -52,7 +52,7 @@ export function Portfolio() {
             <p className="text-sm text-text-muted mb-2">Delivered Projects</p>
             <div className="text-5xl font-bold text-gradient">20+</div>
             <p className="mt-3 text-sm text-text-secondary">
-              ,\, AWS, health technology, software engineering, and analytics.
+              AWS, ERPNext, Frappe, Health Technology, Software Engineering, and Machine Learning.
             </p>
           </div>
           <div className="glass-card p-7">
