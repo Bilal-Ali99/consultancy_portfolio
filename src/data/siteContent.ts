@@ -47,7 +47,7 @@ export type Person = {
 
 export const people: Person[] = [
   {
-    name: "Syed Muhammad Bilal Ali",
+    name: "Muhammad Bilal Ali",
     roles: ["Software Developer", "ERP Developer"],
     location: "United Kingdom",
     bio: "Results-driven Python Developer with hands-on experience in ERPNext and Frappe Framework customization. Also has a background in IT infrastructure and exposure to Machine Learning through university projects and a short internship.",
