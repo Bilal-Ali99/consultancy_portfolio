@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import nodemailer from "nodemailer";
 import { z } from "zod";
 
 const contactSchema = z.object({
@@ -24,11 +25,17 @@ export async function POST(request: Request) {
     return NextResponse.json({ message: "Invalid contact form data." }, { status: 400 });
   }
 
-  const resendApiKey = process.env.RESEND_API_KEY;
+  const smtpHost = process.env.SMTP_HOST;
+  const smtpPort = Number(process.env.SMTP_PORT ?? 465);
+  const smtpUser = process.env.SMTP_USER;
+  const smtpPassword = process.env.SMTP_PASSWORD;
   const toEmail = process.env.CONTACT_TO_EMAIL;
-  const fromEmail = process.env.CONTACT_FROM_EMAIL;
+  const fromEmail = process.env.CONTACT_FROM_EMAIL ?? smtpUser;
+  const smtpSecure = process.env.SMTP_SECURE
+    ? process.env.SMTP_SECURE === "true"
+    : smtpPort === 465;
 
-  if (!resendApiKey || !toEmail || !fromEmail) {
+  if (!smtpHost || !smtpUser || !smtpPassword || !toEmail || !fromEmail) {
     return NextResponse.json(
       { message: "Email service is not configured yet." },
       { status: 500 }
@@ -41,16 +48,21 @@ export async function POST(request: Request) {
   const safeProjectType = escapeHtml(data.projectType);
   const safeMessage = escapeHtml(data.message).replaceAll("\n", "<br />");
 
-  const response = await fetch("https://api.resend.com/emails", {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${resendApiKey}`,
-      "Content-Type": "application/json",
+  const transporter = nodemailer.createTransport({
+    host: smtpHost,
+    port: smtpPort,
+    secure: smtpSecure,
+    auth: {
+      user: smtpUser,
+      pass: smtpPassword,
     },
-    body: JSON.stringify({
+  });
+
+  try {
+    await transporter.sendMail({
       from: fromEmail,
-      to: [toEmail],
-      reply_to: data.email,
+      to: toEmail,
+      replyTo: data.email,
       subject: `New enquiry from ${data.name} - ${data.projectType}`,
       html: `
         <div style="font-family:Arial,sans-serif;line-height:1.6;color:#111827">
@@ -70,15 +82,13 @@ export async function POST(request: Request) {
         "Message:",
         data.message,
       ].join("\n\n"),
-    }),
-  });
+    });
 
-  if (!response.ok) {
+    return NextResponse.json({ message: "Message sent." });
+  } catch {
     return NextResponse.json(
-      { message: "Email could not be sent. Please try again later." },
+      { message: "Email could not be sent. Please check SMTP settings." },
       { status: 502 }
     );
   }
-
-  return NextResponse.json({ message: "Message sent." });
 }
