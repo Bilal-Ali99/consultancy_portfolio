@@ -47,10 +47,10 @@ export type Person = {
 
 export const people: Person[] = [
   {
-    name: "Muhammad Bilal Ali",
-    roles: ["Software Developer", "ERP Developer"],
+    name: "Syed Muhammad Bilal Ali",
+    roles: ["Software Engineer", "ERP Developer", "Machine Learning Practitioner"],
     location: "United Kingdom",
-    bio: "Results-driven Python Developer with hands-on experience in ERPNext and Frappe Framework customization. Also has a background in IT infrastructure and exposure to Machine Learning through university projects and a short internship.",
+    bio: "Results-driven Software Engineer with hands-on experience in ERPNext and Frappe Framework customization. Also has a background in IT infrastructure and exposure to Machine Learning through university projects and a short internship.",
     initials: "BA",
     imageSrc: "/images/team/bilal.png",
     imageAlt: "Portrait of Syed Muhammad Bilal Ali",
@@ -77,7 +77,7 @@ export const people: Person[] = [
       },
       {
         group: "Data & Machine Learning",
-        items: ["Machine Learning", "Pandas", "NumPy", "Matplotlib"],
+        items: ["Machine Learning", "Pandas", "NumPy", "Matplotlib","Seaborn","RAG","Lang-Chain"],
       },
       {
         group: "Tools",
@@ -93,7 +93,7 @@ export const people: Person[] = [
       },
       {
         group: "API Development",
-        items: ["REST APIs", "SCIM API", "Swagger (OpenAPI)", "Postman"],
+        items: ["REST APIs", "SCIM API", "Swagger (OpenAPI)", "Postman","Bruno"],
       },
       {
         group: "Software Architecture",
