@@ -1,30 +1,19 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width="420" height="160">
-  <defs>
-    <style>
-      .word { font-family: 'Poppins', 'Segoe UI', Arial, sans-serif; }
-    </style>
-  </defs>
+<svg width="420" height="120" viewBox="0 0 420 120" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title">
+  <title id="title">HB Solutions Monochrome</title>
 
-  <!-- Monochrome circle (no gradient, no opacity) -->
-  <circle cx="400" cy="290" r="170" fill="#14202F"/>
+  <circle cx="60" cy="60" r="43" fill="#0F172A" opacity="0.12"/>
+  <circle cx="58" cy="56" r="42" fill="#14202F"/>
 
-  <!-- Chevrons in monochrome -->
-  <g fill="none" stroke="#FFFFFF" stroke-width="26" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M355,205 L275,290 L355,375"/>
-    <path d="M445,205 L525,290 L445,375"/>
+  <g fill="none" stroke="#FFFFFF" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M49 37 L32 56 L49 75"/>
+    <path d="M67 37 L84 56 L67 75"/>
   </g>
+  <circle cx="58" cy="56" r="5.5" fill="#FFFFFF"/>
 
-  <!-- Center dot in monochrome -->
-  <circle cx="400" cy="290" r="16" fill="#FFFFFF"/>
-
-  <!-- Text in single color -->
-  <text x="400" y="560" text-anchor="middle" class="word"
-        font-size="72" font-weight="700" fill="#14202F">
+  <text x="118" y="54" font-family="Poppins, Segoe UI, Arial, sans-serif" font-size="34" font-weight="800" fill="#14202F">
     HB Solutions
   </text>
-
-  <text x="400" y="605" text-anchor="middle" class="word"
-        font-size="24" font-weight="500" letter-spacing="4" fill="#14202F">
-    ERP &#8226; SOFTWARE &#8226; INTEGRATION
+  <text x="120" y="82" font-family="Poppins, Segoe UI, Arial, sans-serif" font-size="11" font-weight="700" letter-spacing="2.2" fill="#64748B">
+    ERP * Software * Cloud
   </text>
 </svg>
