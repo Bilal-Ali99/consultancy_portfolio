@@ -85,9 +85,14 @@ export async function POST(request: Request) {
     });
 
     return NextResponse.json({ message: "Message sent." });
-  } catch {
+  } catch (error) {
+    console.error(
+      "SMTP contact delivery failed:",
+      error instanceof Error ? error.message : "Unknown SMTP error"
+    );
+
     return NextResponse.json(
-      { message: "Email could not be sent. Please check SMTP settings." },
+      { message: "Email could not be sent. Please check the SMTP settings." },
       { status: 502 }
     );
   }
