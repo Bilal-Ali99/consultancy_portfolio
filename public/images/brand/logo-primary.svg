@@ -1,41 +1,25 @@
-<svg width="420" height="160" viewBox="0 0 420 160" xmlns="http://www.w3.org/2000/svg">
-  <title>HB Solutions (Primary)</title>
+<svg width="420" height="120" viewBox="0 0 420 120" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title">
+  <title id="title">HB Solutions</title>
+  <defs>
+    <linearGradient id="brandGradient" x1="14" y1="16" x2="98" y2="104" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#6D28D9"/>
+      <stop offset="1" stop-color="#4F46E5"/>
+    </linearGradient>
+  </defs>
 
-  <!-- Scale + center original 800×800 logo into 420×160 -->
-  <g transform="translate(180,-10) scale(0.20)">
+  <circle cx="60" cy="60" r="43" fill="#0F172A" opacity="0.12"/>
+  <circle cx="58" cy="56" r="42" fill="url(#brandGradient)"/>
 
-    <defs>
-      <style>.word { font-family: 'Poppins', 'Segoe UI', Arial, sans-serif; }</style>
-      <linearGradient id="g4" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stop-color="#6D28D9"/>
-        <stop offset="100%" stop-color="#4F46E5"/>
-      </linearGradient>
-    </defs>
-
-    <!-- Background circle -->
-    <circle cx="400" cy="290" r="170" fill="#0f172a" opacity="0.15" transform="translate(9,15)"/>
-    <circle cx="400" cy="290" r="170" fill="url(#g4)"/>
-
-    <!-- Chevrons -->
-    <g fill="none" stroke="#ffffff" stroke-width="26" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M355,205 L275,290 L355,375"/>
-      <path d="M445,205 L525,290 L445,375"/>
-    </g>
-
-    <!-- Center dot -->
-    <circle cx="400" cy="290" r="16" fill="#22D3EE"/>
-
-    <!-- HB Solutions text -->
-    <text x="400" y="560" text-anchor="middle" class="word"
-          font-size="72" font-weight="700" fill="#0F172A">
-      HB <tspan fill="#6D28D9">Solutions</tspan>
-    </text>
-
-    <!-- Subtitle -->
-    <text x="400" y="605" text-anchor="middle" class="word"
-          font-size="24" font-weight="500" letter-spacing="4" fill="#64748B">
-      ERP &#8226; SOFTWARE &#8226; INTEGRATION
-    </text>
-
+  <g fill="none" stroke="#FFFFFF" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M49 37 L32 56 L49 75"/>
+    <path d="M67 37 L84 56 L67 75"/>
   </g>
+  <circle cx="58" cy="56" r="5.5" fill="#22D3EE"/>
+
+  <text x="118" y="54" font-family="Poppins, Segoe UI, Arial, sans-serif" font-size="34" font-weight="800" fill="#0F172A">
+    HB <tspan fill="#6D28D9">Solutions</tspan>
+  </text>
+  <text x="120" y="82" font-family="Poppins, Segoe UI, Arial, sans-serif" font-size="11" font-weight="700" letter-spacing="2.5" fill="#64748B">
+    ERP - SOFTWARE - INTEGRATION
+  </text>
 </svg>

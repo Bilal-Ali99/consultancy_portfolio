@@ -40,10 +40,10 @@ export function Navbar() {
           <Image
             src="/images/brand/logo-primary.svg"
             alt={`${siteInfo.brandName} logo`}
-            width={210}
-            height={80}
+            width={190}
+            height={54}
             priority
-            className="h-14 w-auto transition-transform group-hover:scale-[1.02]"
+            className="h-12 w-[168px] object-contain object-left transition-transform group-hover:scale-[1.02] md:h-14 md:w-[190px]"
           />
         </Link>
 

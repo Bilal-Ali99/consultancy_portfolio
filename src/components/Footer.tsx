@@ -10,9 +10,9 @@ export function Footer() {
             <Image
               src="/images/brand/logo-primary.svg"
               alt={`${siteInfo.brandName} logo`}
-              width={170}
-              height={45}
-              className="h-10 w-auto"
+              width={160}
+              height={46}
+              className="h-9 w-[150px] object-contain object-left"
             />
           </div>
 
