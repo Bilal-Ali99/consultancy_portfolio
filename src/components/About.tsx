@@ -23,7 +23,7 @@ export function About() {
           </h2>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-8">
+        <div className="grid lg:grid-cols-2 gap-10">
           {people.map((person, index) => {
             return (
               <motion.article
@@ -35,8 +35,7 @@ export function About() {
                 className="space-y-5"
               >
                 <div
-                  tabIndex={0}
-                  className="group relative min-h-[680px] md:min-h-[740px] overflow-hidden rounded-2xl border border-black/10 bg-background-primary outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                  className="relative mx-auto aspect-square w-full max-w-[430px] overflow-hidden rounded-full border border-black/10 bg-background-primary shadow-sm md:max-w-[480px]"
                   aria-label={person.imageAlt}
                 >
                   {person.imageSrc ? (
@@ -44,7 +43,7 @@ export function About() {
                       src={person.imageSrc}
                       alt={person.imageAlt}
                       fill
-                      sizes="(min-width: 1024px) 50vw, 100vw"
+                      sizes="(min-width: 1024px) 480px, 90vw"
                       className="object-cover"
                     />
                   ) : (
@@ -58,18 +57,8 @@ export function About() {
 
                   <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
 
-                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 to-transparent p-6">
-                    <h3 className="text-2xl md:text-3xl font-bold text-white">{person.name}</h3>
-                    <div className="mt-4 flex max-h-0 flex-wrap gap-2 overflow-hidden opacity-0 transition-all duration-300 group-hover:max-h-24 group-hover:opacity-100 group-focus:max-h-24 group-focus:opacity-100">
-                      {person.roles.map((role) => (
-                        <span key={role} className="px-3 py-1 rounded-full bg-white/15 text-white text-xs font-medium backdrop-blur-sm">
-                          {role}
-                        </span>
-                      ))}
-                    </div>
-                    <p className="mt-4 max-h-0 overflow-hidden text-sm md:text-base text-white/80 leading-relaxed opacity-0 transition-all duration-300 group-hover:max-h-40 group-hover:opacity-100 group-focus:max-h-40 group-focus:opacity-100">
-                      {person.bio}
-                    </p>
+                  <div className="absolute inset-x-8 bottom-10 text-center md:bottom-12">
+                    <h3 className="text-xl font-bold text-white md:text-2xl">{person.name}</h3>
                   </div>
                 </div>
               </motion.article>
@@ -120,7 +109,15 @@ export function About() {
 function ProfileDetails({ person }: { person: Person }) {
   return (
     <div className="glass-card p-6 md:p-8">
-      <h3 className="mb-5 text-2xl font-bold text-text-primary">{person.name}</h3>
+      <h3 className="mb-4 text-2xl font-bold text-text-primary">{person.name}</h3>
+      <div className="mb-5 flex flex-wrap gap-2">
+        {person.roles.map((role) => (
+          <span key={role} className="rounded-full border border-accent/20 bg-accent/10 px-3 py-1 text-xs font-semibold text-accent">
+            {role}
+          </span>
+        ))}
+      </div>
+      <p className="mb-6 text-sm leading-relaxed text-text-secondary md:text-base">{person.bio}</p>
       <div className="flex flex-wrap items-center gap-3 mb-8 text-sm text-text-muted">
         <span className="inline-flex items-center gap-2">
           <MapPin className="w-4 h-4 text-accent" />

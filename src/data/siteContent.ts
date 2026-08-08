@@ -191,6 +191,7 @@ export const people: Person[] = [
           "CI/CD",
           "Azure DevOps",
           "Terraform",
+          "Apache Kafka",
           "AWS CloudFormation",
           "IIS (Internet Information Services)",
           "Infrastructure as Code (IaC)",
@@ -337,8 +338,8 @@ export const techStack = [
     items: ["Python", "Frappe Framework", "ERPNext", "Node.js", "DocTypes", "REST APIs"],
   },
   {
-    group: "AWS & Cloud",
-    items: ["AWS Lambda", "DynamoDB", "API Gateway", "SNS", "CloudFront", "S3", "IAM", "VPC", "CloudWatch"],
+    group: "AWS",
+    items: ["AWS Lambda", "MSK", "ActiveMQ", "DynamoDB", "API Gateway", "SNS", "CloudFront", "S3", "IAM", "VPC", "CloudWatch"],
   },
   {
     group: "Data & Analytics",
@@ -358,7 +359,7 @@ export const techStack = [
   },
   {
     group: "Infrastructure & DevOps",
-    items: ["Ubuntu", "Git", "Bench CLI", "CloudFormation", "Terraform", "YAML", "HCL"],
+    items: ["Ubuntu", "Git", "Bench CLI", "CloudFormation", "Terraform", "Apache Kafka", "YAML", "HCL"],
   },
   {
     group: "Design & Quality",

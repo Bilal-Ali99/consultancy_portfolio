@@ -6,14 +6,15 @@ import { Menu, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { services, siteInfo } from "@/data/siteContent";
+import { scrollToSection } from "@/lib/scrollToSection";
 
 const navLinks = [
-  { href: "#tech-stack", label: "Tech Stack" },
-  { href: "#why-choose-us", label: "Why Choose Us" },
-  { href: "#work", label: "Projects" },
-  { href: "#about", label: "About" },
-  { href: "#certifications", label: "Certifications" },
-  { href: "#contact", label: "Contact" },
+  { sectionId: "tech-stack", label: "Tech Stack" },
+  { sectionId: "why-choose-us", label: "Why Choose Us" },
+  { sectionId: "work", label: "Projects" },
+  { sectionId: "about", label: "About" },
+  { sectionId: "certifications", label: "Certifications" },
+  { sectionId: "contact", label: "Contact" },
 ];
 
 export function Navbar() {
@@ -40,10 +41,10 @@ export function Navbar() {
           <Image
             src="/images/brand/logo-primary.svg"
             alt={`${siteInfo.brandName} logo`}
-            width={190}
-            height={54}
+            width={300}
+            height={86}
             priority
-            className="h-12 w-[168px] object-contain object-left transition-transform group-hover:scale-[1.02] md:h-14 md:w-[190px]"
+            className="h-16 w-[230px] object-contain object-left transition-transform group-hover:scale-[1.02] md:h-20 md:w-[300px]"
           />
         </Link>
 
@@ -71,23 +72,25 @@ export function Navbar() {
             </div>
           </div>
           {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
+            <button
+              key={link.sectionId}
+              type="button"
+              onClick={() => scrollToSection(link.sectionId)}
               className="relative text-sm font-semibold text-text-primary transition-colors hover:text-accent group"
             >
               {link.label}
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all group-hover:w-full" />
-            </Link>
+            </button>
           ))}
         </div>
 
-        <Link
-          href="#contact"
+        <button
+          type="button"
+          onClick={() => scrollToSection("contact")}
           className="absolute right-10 hidden rounded-full bg-accent px-5 py-2.5 text-sm font-medium text-white transition-all hover:scale-105 hover:bg-accent-hover lg:inline-flex"
         >
           Work With Us
-        </Link>
+        </button>
 
         <button
           className="ml-auto text-text-primary lg:hidden"
@@ -117,14 +120,17 @@ export function Navbar() {
                 </div>
               </div>
               {navLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="font-medium text-text-primary transition-colors hover:text-accent"
+                <button
+                  key={link.sectionId}
+                  type="button"
+                  onClick={() => {
+                    setIsMobileMenuOpen(false);
+                    scrollToSection(link.sectionId);
+                  }}
+                  className="text-left font-medium text-text-primary transition-colors hover:text-accent"
                 >
                   {link.label}
-                </Link>
+                </button>
               ))}
             </div>
           </motion.div>

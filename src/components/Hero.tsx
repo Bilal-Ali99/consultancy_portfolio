@@ -2,8 +2,8 @@
 
 import { motion } from "framer-motion";
 import { ArrowDown, Sparkles } from "lucide-react";
-import Link from "next/link";
 import { siteInfo } from "@/data/siteContent";
+import { scrollToSection } from "@/lib/scrollToSection";
 
 export function Hero() {
   return (
@@ -57,19 +57,21 @@ export function Hero() {
           transition={{ duration: 0.7, delay: 0.3 }}
           className="flex flex-col sm:flex-row items-center justify-center gap-4"
         >
-          <Link
-            href="#work"
+          <button
+            type="button"
+            onClick={() => scrollToSection("work")}
             className="px-8 py-4 bg-accent hover:bg-accent-hover text-white font-medium rounded-full transition-all hover:scale-105 flex items-center gap-2"
           >
             View Work
             <ArrowDown className="w-4 h-4" />
-          </Link>
-          <Link
-            href="#contact"
+          </button>
+          <button
+            type="button"
+            onClick={() => scrollToSection("contact")}
             className="px-8 py-4 border border-black/10 hover:border-black/20 text-text-primary font-medium rounded-full transition-all hover:bg-black/[0.03]"
           >
             Start a Conversation
-          </Link>
+          </button>
         </motion.div>
       </div>
     </section>

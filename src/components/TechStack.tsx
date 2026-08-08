@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import {
   SiBlazor,
+  SiApachekafka,
   SiCloudflare,
   SiCss,
   SiFrappe,
@@ -26,7 +27,7 @@ import {
   SiTypescript,
   SiUbuntu,
 } from "react-icons/si";
-import { BrainCircuit, Cloud, Database, FileCode2, Palette, ShieldCheck } from "lucide-react";
+import { BrainCircuit, Cloud, Database, FileCode2, MessageSquareMore, Palette, ShieldCheck } from "lucide-react";
 import { techStack } from "@/data/siteContent";
 import type { IconType } from "react-icons";
 
@@ -57,6 +58,9 @@ const techIcons: Record<string, IconType> = {
   Selenium: SiSelenium,
   Terraform: SiTerraform,
   "AWS Lambda": Cloud,
+  MSK: SiApachekafka,
+  "Apache Kafka": SiApachekafka,
+  ActiveMQ: MessageSquareMore,
   DynamoDB: Database,
   "API Gateway": Cloud,
   CloudFront: SiCloudflare,

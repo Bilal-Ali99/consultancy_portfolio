@@ -120,7 +120,7 @@ function ProjectCard({
     >
       <div className="min-h-[245px]">
         <div className="mb-4 flex items-center gap-3">
-          <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-accent/10 text-accent transition-transform duration-300 group-hover:scale-105">
+          <div className="flex h-14 w-14 items-center justify-center rounded-full border border-accent/20 bg-accent/10 text-accent shadow-sm transition-transform duration-300 group-hover:scale-105">
             <CategoryIcon className="h-5 w-5" />
           </div>
           <span className="text-xs font-medium text-text-muted">{project.category}</span>
@@ -169,10 +169,11 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
         className="glass-card w-full max-w-4xl max-h-[90vh] overflow-y-auto"
         onClick={(event) => event.stopPropagation()}
       >
-        <div className="relative h-48 bg-background-elevated overflow-hidden">
-          <div className="absolute inset-0 opacity-30" style={{ backgroundColor: project.color }} />
-          <div className="absolute inset-0 flex items-center justify-center">
-            <CategoryIcon className="w-24 h-24 text-white/10" />
+        <div className="relative flex min-h-[230px] flex-col items-start gap-6 bg-background-elevated px-8 py-10 overflow-hidden sm:flex-row sm:items-center">
+          <div className="absolute -right-16 -top-20 h-64 w-64 rounded-full opacity-20" style={{ backgroundColor: project.color }} />
+          <div className="absolute -bottom-24 left-12 h-56 w-56 rounded-full bg-accent/10" />
+          <div className="flex h-28 w-28 shrink-0 items-center justify-center rounded-full border border-white/30 shadow-xl sm:h-32 sm:w-32" style={{ backgroundColor: project.color }}>
+            <CategoryIcon className="h-14 w-14 text-white" />
           </div>
           <button
             onClick={onClose}
@@ -183,7 +184,7 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>
-          <div className="absolute bottom-6 left-8">
+          <div className="relative max-w-2xl">
             <h3 className="text-3xl font-bold">{project.title}</h3>
             <span className="text-text-muted">{project.category}</span>
           </div>
