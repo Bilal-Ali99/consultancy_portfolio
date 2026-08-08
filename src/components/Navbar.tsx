@@ -8,6 +8,8 @@ import Link from "next/link";
 import { services, siteInfo } from "@/data/siteContent";
 import { scrollToSection } from "@/lib/scrollToSection";
 
+const brandLogoSrc = "/images/brand/logo-primary.svg?v=20260809";
+
 const navLinks = [
   { sectionId: "tech-stack", label: "Tech Stack" },
   { sectionId: "why-choose-us", label: "Why Choose Us" },
@@ -39,7 +41,7 @@ export function Navbar() {
       <nav className="relative flex h-24 w-full items-center justify-between px-5 md:px-8 lg:px-10">
         <Link href="/" className="flex shrink-0 items-center gap-3 group lg:absolute lg:left-10">
           <Image
-            src="/images/brand/logo-primary.svg"
+            src={brandLogoSrc}
             alt={`${siteInfo.brandName} logo`}
             width={300}
             height={86}
