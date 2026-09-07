@@ -1,6 +1,8 @@
 import Image from "next/image";
 import { siteInfo } from "@/data/siteContent";
 
+const brandLogoSrc = "/images/brand/logo-primary.svg?v=20260809";
+
 export function Footer() {
   return (
     <footer className="border-t border-black/10 bg-background-elevated">
@@ -8,7 +10,7 @@ export function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="flex items-center gap-2">
             <Image
-              src="/images/brand/logo-primary.svg"
+              src={brandLogoSrc}
               alt={`${siteInfo.brandName} logo`}
               width={300}
               height={86}

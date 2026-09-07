@@ -2,11 +2,13 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { ChevronRight, Menu, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { services, siteInfo } from "@/data/siteContent";
-import { scrollToSection } from "@/lib/scrollToSection";
+import { navigateToHomeSection } from "@/lib/scrollToSection";
+
+const brandLogoSrc = "/images/brand/logo-primary.svg?v=20260809";
 
 const navLinks = [
   { sectionId: "tech-stack", label: "Tech Stack" },
@@ -39,7 +41,7 @@ export function Navbar() {
       <nav className="relative flex h-24 w-full items-center justify-between px-5 md:px-8 lg:px-10">
         <Link href="/" className="flex shrink-0 items-center gap-3 group lg:absolute lg:left-10">
           <Image
-            src="/images/brand/logo-primary.svg"
+            src={brandLogoSrc}
             alt={`${siteInfo.brandName} logo`}
             width={300}
             height={86}
@@ -50,24 +52,49 @@ export function Navbar() {
 
         <div className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-5 lg:flex xl:gap-6">
           <div className="group relative py-7">
-            <button type="button" className="text-sm font-semibold text-text-primary transition-colors hover:text-accent">
+            <button
+              type="button"
+              aria-haspopup="true"
+              className="text-sm font-semibold text-text-primary transition-colors hover:text-accent focus-visible:outline-none focus-visible:text-accent"
+            >
               Services
             </button>
-            <div className="invisible absolute left-1/2 top-full z-50 w-[760px] -translate-x-1/2 rounded-2xl border border-black/10 bg-background-card p-5 opacity-0 shadow-2xl transition-all duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
+            <div className="invisible absolute left-1/2 top-full z-50 w-[760px] -translate-x-1/2 rounded-2xl border border-black/10 bg-background-card p-5 opacity-0 shadow-2xl transition-all duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
               <div className="grid grid-cols-2 gap-4">
-                {services.map((service) => (
-                  <div key={service.title} className="rounded-xl p-4 transition-colors hover:bg-black/[0.03]">
-                    <h3 className="font-semibold text-text-primary">{service.title}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-text-secondary">{service.summary}</p>
-                    <div className="mt-3 flex flex-wrap gap-2">
+                {services.map((service) => {
+                  const serviceContent = (
+                    <>
+                      <h3 className="font-semibold text-text-primary">{service.title}</h3>
+                      <p className="mt-2 text-sm leading-relaxed text-text-secondary">{service.summary}</p>
+                      <div className="mt-3 flex flex-wrap gap-2">
                       {service.capabilities.slice(0, 4).map((capability) => (
                         <span key={capability} className="text-xs text-accent">
                           {capability}
+                          </span>
+                        ))}
+                      </div>
+                      {service.slug && (
+                        <span className="mt-4 inline-flex items-center gap-1 text-xs font-bold text-accent">
+                          Explore service <ChevronRight className="h-3.5 w-3.5" />
                         </span>
-                      ))}
+                      )}
+                    </>
+                  );
+
+                  return service.slug ? (
+                    <Link
+                      key={service.title}
+                      href={`/services/${service.slug}/`}
+                      className="rounded-xl p-4 transition-colors hover:bg-black/[0.03] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                    >
+                      {serviceContent}
+                    </Link>
+                  ) : (
+                    <div key={service.title} className="rounded-xl p-4">
+                      {serviceContent}
                     </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
           </div>
@@ -75,7 +102,7 @@ export function Navbar() {
             <button
               key={link.sectionId}
               type="button"
-              onClick={() => scrollToSection(link.sectionId)}
+              onClick={() => navigateToHomeSection(link.sectionId)}
               className="relative text-sm font-semibold text-text-primary transition-colors hover:text-accent group"
             >
               {link.label}
@@ -86,7 +113,7 @@ export function Navbar() {
 
         <button
           type="button"
-          onClick={() => scrollToSection("contact")}
+          onClick={() => navigateToHomeSection("contact")}
           className="absolute right-10 hidden rounded-full bg-accent px-5 py-2.5 text-sm font-medium text-white transition-all hover:scale-105 hover:bg-accent-hover lg:inline-flex"
         >
           Work With Us
@@ -112,11 +139,23 @@ export function Navbar() {
               <div>
                 <div className="mb-2 font-medium text-text-primary">Services</div>
                 <div className="grid gap-2">
-                  {services.map((service) => (
-                    <div key={service.title} className="text-sm font-medium text-text-primary">
-                      {service.title}
-                    </div>
-                  ))}
+                  {services.map((service) =>
+                    service.slug ? (
+                      <Link
+                        key={service.title}
+                        href={`/services/${service.slug}/`}
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        className="flex items-center justify-between gap-3 rounded-md py-1 text-sm font-semibold text-text-primary transition-colors hover:text-accent"
+                      >
+                        {service.title}
+                        <ChevronRight className="h-4 w-4 text-accent" />
+                      </Link>
+                    ) : (
+                      <div key={service.title} className="py-1 text-sm font-medium text-text-primary">
+                        {service.title}
+                      </div>
+                    )
+                  )}
                 </div>
               </div>
               {navLinks.map((link) => (
@@ -125,7 +164,7 @@ export function Navbar() {
                   type="button"
                   onClick={() => {
                     setIsMobileMenuOpen(false);
-                    scrollToSection(link.sectionId);
+                    navigateToHomeSection(link.sectionId);
                   }}
                   className="text-left font-medium text-text-primary transition-colors hover:text-accent"
                 >

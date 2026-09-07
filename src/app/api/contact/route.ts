@@ -1,12 +1,14 @@
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 import { z } from "zod";
+import { contactProjectTypes } from "@/data/siteContent";
 
 const contactSchema = z.object({
   name: z.string().min(4),
   email: z.string().email(),
-  projectType: z.enum(["ERPNext / Frappe", "Software Development", "UI/UX", "Machine Learning", "Other"]),
+  projectType: z.enum(contactProjectTypes),
   message: z.string().min(10),
+  source: z.string().trim().max(100).optional(),
 });
 
 function escapeHtml(value: string) {
@@ -47,6 +49,8 @@ export async function POST(request: Request) {
   const safeEmail = escapeHtml(data.email);
   const safeProjectType = escapeHtml(data.projectType);
   const safeMessage = escapeHtml(data.message).replaceAll("\n", "<br />");
+  const source = data.source?.replace(/[\r\n]+/g, " ").trim();
+  const safeSource = source ? escapeHtml(source) : undefined;
 
   const transporter = nodemailer.createTransport({
     host: smtpHost,
@@ -63,13 +67,14 @@ export async function POST(request: Request) {
       from: fromEmail,
       to: toEmail,
       replyTo: data.email,
-      subject: `New enquiry from ${data.name} - ${data.projectType}`,
+      subject: `New enquiry from ${data.name} - ${data.projectType}${source ? ` - ${source}` : ""}`,
       html: `
         <div style="font-family:Arial,sans-serif;line-height:1.6;color:#111827">
           <h2>New HB Solutions enquiry</h2>
           <p><strong>Name:</strong> ${safeName}</p>
           <p><strong>Email:</strong> ${safeEmail}</p>
           <p><strong>Project Type:</strong> ${safeProjectType}</p>
+          ${safeSource ? `<p><strong>Source:</strong> ${safeSource}</p>` : ""}
           <p><strong>Message:</strong></p>
           <p>${safeMessage}</p>
         </div>
@@ -79,6 +84,7 @@ export async function POST(request: Request) {
         `Name: ${data.name}`,
         `Email: ${data.email}`,
         `Project Type: ${data.projectType}`,
+        ...(source ? [`Source: ${source}`] : []),
         "Message:",
         data.message,
       ].join("\n\n"),

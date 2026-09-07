@@ -58,6 +58,14 @@
   .scrollbar-hidden::-webkit-scrollbar {
     display: none;
   }
+
+  .service-grid-background {
+    background-image:
+      linear-gradient(rgba(17, 24, 39, 0.045) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(17, 24, 39, 0.045) 1px, transparent 1px);
+    background-size: 40px 40px;
+    mask-image: linear-gradient(to bottom, black 0%, black 72%, transparent 100%);
+  }
 }
 
 @keyframes marquee-scroll {

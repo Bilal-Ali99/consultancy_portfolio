@@ -7,3 +7,17 @@ out/
 *.tsbuildinfo
 .vercel/
 .documentation/
+playwright-report/
+test-results/
+.visual-check/
+.env
+.env.development
+.env.production
+.env.test
+.DS_Store
+Thumbs.db
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+documentation/

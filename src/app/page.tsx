@@ -8,10 +8,12 @@ import { UpworkBanner } from "@/components/UpworkBanner";
 import { ThreeScene } from "@/components/ThreeScene";
 import { TechStack } from "@/components/TechStack";
 import { WhyChooseUs } from "@/components/WhyChooseUs";
+import { HomeSectionNavigator } from "@/components/HomeSectionNavigator";
 
 export default function Home() {
   return (
     <>
+      <HomeSectionNavigator />
       <ThreeScene />
       <UpworkBanner />
       <Hero />

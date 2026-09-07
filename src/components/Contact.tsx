@@ -6,17 +6,37 @@ import { Send } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import {
+  contactProjectTypes,
+  type ContactProjectType,
+} from "@/data/siteContent";
 
 const contactSchema = z.object({
   name: z.string().min(4, "Name must be at least 4 characters"),
   email: z.string().email("Please enter a valid email"),
-  projectType: z.enum(["ERPNext / Frappe", "Software Development", "UI/UX", "Machine Learning", "Other"]),
+  projectType: z.enum(contactProjectTypes),
   message: z.string().min(10, "Please provide more details about your project"),
 });
 
 type ContactForm = z.infer<typeof contactSchema>;
 
-export function Contact() {
+type ContactProps = {
+  sectionId?: string;
+  titlePrefix?: string;
+  titleAccent?: string;
+  description?: string;
+  defaultProjectType?: ContactProjectType;
+  source?: string;
+};
+
+export function Contact({
+  sectionId = "contact",
+  titlePrefix = "Let's",
+  titleAccent = "Work Together",
+  description = "Have an ERPNext, software, UI/UX, or data project in mind? Contact us to start a conversation.",
+  defaultProjectType = "ERPNext / Frappe",
+  source,
+}: ContactProps = {}) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
@@ -28,6 +48,9 @@ export function Contact() {
     reset,
   } = useForm<ContactForm>({
     resolver: zodResolver(contactSchema),
+    defaultValues: {
+      projectType: defaultProjectType,
+    },
   });
 
   const onSubmit = async (data: ContactForm) => {
@@ -40,7 +63,7 @@ export function Contact() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify({ ...data, source }),
       });
 
       if (!response.ok) {
@@ -48,7 +71,7 @@ export function Contact() {
         throw new Error(result?.message ?? "Message could not be sent. Please try again.");
       }
 
-      reset();
+      reset({ projectType: defaultProjectType });
       setIsSubmitted(true);
     } catch (error) {
       setSubmitError(error instanceof Error ? error.message : "Message could not be sent. Please try again.");
@@ -58,7 +81,7 @@ export function Contact() {
   };
 
   return (
-    <section id="contact" className="section-padding py-32 bg-background-primary">
+    <section id={sectionId} className="section-padding py-32 bg-background-primary">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -67,12 +90,9 @@ export function Contact() {
           className="mb-20"
         >
           <h2 className="text-4xl md:text-6xl font-bold mb-6">
-            Let&apos;s <span className="text-gradient">Work Together</span>
+            {titlePrefix} <span className="text-gradient">{titleAccent}</span>
           </h2>
-          <p className="text-text-secondary text-lg max-w-2xl">
-            Have an ERPNext, software, UI/UX, or data project in mind? Contact us
-            to start a conversation.
-          </p>
+          <p className="text-text-secondary text-lg max-w-2xl">{description}</p>
         </motion.div>
 
         <div className="mx-auto max-w-4xl">
@@ -94,8 +114,9 @@ export function Contact() {
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
-                      <label className="block text-sm font-medium mb-2">Name</label>
+                      <label htmlFor={`${sectionId}-name`} className="block text-sm font-medium mb-2">Name</label>
                       <input
+                        id={`${sectionId}-name`}
                         {...register("name")}
                         className="w-full px-4 py-3 bg-background-primary border border-black/10 rounded-lg focus:border-accent focus:outline-none transition-colors text-text-primary"
                         placeholder="Your name"
@@ -105,8 +126,9 @@ export function Contact() {
                       )}
                     </div>
                     <div>
-                      <label className="block text-sm font-medium mb-2">Email</label>
+                      <label htmlFor={`${sectionId}-email`} className="block text-sm font-medium mb-2">Email</label>
                       <input
+                        id={`${sectionId}-email`}
                         {...register("email")}
                         type="email"
                         className="w-full px-4 py-3 bg-background-primary border border-black/10 rounded-lg focus:border-accent focus:outline-none transition-colors text-text-primary"
@@ -119,22 +141,24 @@ export function Contact() {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium mb-2">Project Type</label>
+                    <label htmlFor={`${sectionId}-project-type`} className="block text-sm font-medium mb-2">Project Type</label>
                     <select
+                      id={`${sectionId}-project-type`}
                       {...register("projectType")}
                       className="w-full px-4 py-3 bg-background-primary border border-black/10 rounded-lg focus:border-accent focus:outline-none transition-colors text-text-primary"
                     >
-                      <option value="ERPNext / Frappe">ERPNext / Frappe</option>
-                      <option value="Software Development">Software Development</option>
-                      <option value="UI/UX">UI/UX</option>
-                      <option value="Machine Learning">Machine Learning</option>
-                      <option value="Other">Other</option>
+                      {contactProjectTypes.map((projectType) => (
+                        <option key={projectType} value={projectType}>
+                          {projectType}
+                        </option>
+                      ))}
                     </select>
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium mb-2">Project Details</label>
+                    <label htmlFor={`${sectionId}-message`} className="block text-sm font-medium mb-2">Project Details</label>
                     <textarea
+                      id={`${sectionId}-message`}
                       {...register("message")}
                       rows={5}
                       className="w-full px-4 py-3 bg-background-primary border border-black/10 rounded-lg focus:border-accent focus:outline-none transition-colors text-text-primary resize-none"

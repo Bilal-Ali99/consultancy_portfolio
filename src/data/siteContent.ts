@@ -10,6 +10,16 @@ export const siteInfo = {
     "A consultancy focused on ERPNext, Frappe, AWS serverless projects, software development, and UI/UX solutions.",
 };
 
+export const contactProjectTypes = [
+  "ERPNext / Frappe",
+  "Software Development",
+  "UI/UX",
+  "Machine Learning",
+  "Other",
+] as const;
+
+export type ContactProjectType = (typeof contactProjectTypes)[number];
+
 export const contactInfo = {
   email: "bilal.ali1999@gmail.com",
   location: "United Kingdom / Remote",
@@ -289,9 +299,64 @@ export type Project = {
   repoUrl?: string;
 };
 
-export const services = [
+export type ServiceSummary = {
+  title: string;
+  summary: string;
+  capabilities: string[];
+  slug?: string;
+};
+
+export type ServiceModuleIcon =
+  | "accounting"
+  | "procurement"
+  | "sales"
+  | "stock"
+  | "manufacturing"
+  | "projects"
+  | "pos"
+  | "quality"
+  | "support"
+  | "assets"
+  | "hr"
+  | "custom-apps"
+  | "workflows"
+  | "integrations";
+
+export type ServiceModule = {
+  title: string;
+  description: string;
+  icon: ServiceModuleIcon;
+};
+
+export type ServiceStatistic = {
+  value: string;
+  label: string;
+  sourceLabel: string;
+  sourceUrl: string;
+};
+
+export type ServicePageContent = {
+  slug: string;
+  navTitle: string;
+  eyebrow: string;
+  headline: string;
+  introduction: string;
+  metadataTitle: string;
+  metadataDescription: string;
+  modules: ServiceModule[];
+  extensions: ServiceModule[];
+  statistics: ServiceStatistic[];
+  statisticsVerified: string;
+  punchline: string;
+  demoReasons: { title: string; description: string }[];
+  trialUrl: string;
+  faqs: { question: string; answer: string }[];
+};
+
+export const services: ServiceSummary[] = [
   {
     title: "ERPNext & Frappe Development",
+    slug: "erpnext-frappe-development",
     summary:
       "Custom ERP modules, DocTypes, workflows, reports, hooks, patches, and accounting automation built around real business operations.",
     capabilities: ["Custom apps", "DocTypes", "Script reports", "Journal Entry automation", "HR & Payroll"],
@@ -327,6 +392,213 @@ export const services = [
     capabilities: ["Ubuntu", "Git", "IAM", "WAF", "Secure software", "Monitoring"],
   },
 ];
+
+export const servicePages: ServicePageContent[] = [
+  {
+    slug: "erpnext-frappe-development",
+    navTitle: "ERPNext & Frappe Development",
+    eyebrow: "ERPNext & Frappe Development",
+    headline: "ERPNext built around your business, not the other way around.",
+    introduction:
+      "We map your real operations, configure the right modules, and extend Frappe through maintainable custom apps, reports, workflows, automation, and integrations without modifying ERPNext core files.",
+    metadataTitle: "ERPNext & Frappe Development Services | HB Solutions",
+    metadataDescription:
+      "ERPNext and Frappe development services for custom apps, DocTypes, workflows, reports, accounting automation, HR, payroll, and integrations.",
+    modules: [
+      {
+        title: "Accounting",
+        icon: "accounting",
+        description:
+          "Connect invoicing, payments, journals, ledgers, assets, budgets, and financial reporting in one controlled record.",
+      },
+      {
+        title: "Procurement",
+        icon: "procurement",
+        description:
+          "Structure supplier workflows from material requests and quotations through purchase orders, receipts, and payments.",
+      },
+      {
+        title: "Sales",
+        icon: "sales",
+        description:
+          "Manage quotations, sales orders, pricing, fulfilment, invoicing, and customer-facing documents as one connected flow.",
+      },
+      {
+        title: "Stock & Inventory",
+        icon: "stock",
+        description:
+          "Track items, warehouses, batches, serial numbers, transfers, valuation, replenishment, and real-time stock movement.",
+      },
+      {
+        title: "Manufacturing",
+        icon: "manufacturing",
+        description:
+          "Coordinate bills of materials, production plans, work orders, job cards, material consumption, and quality checks.",
+      },
+      {
+        title: "Projects",
+        icon: "projects",
+        description:
+          "Plan tasks, milestones, timesheets, costs, billing, and delivery progress with operational and financial visibility.",
+      },
+      {
+        title: "Point of Sale",
+        icon: "pos",
+        description:
+          "Support fast retail billing with customer, payment, pricing, and inventory records connected to the wider ERP.",
+      },
+      {
+        title: "Quality",
+        icon: "quality",
+        description:
+          "Define inspection criteria, record quality results, and connect checks to purchasing, stock, and manufacturing activity.",
+      },
+      {
+        title: "Support",
+        icon: "support",
+        description:
+          "Organize customer issues, assignment, communication, resolution status, and service visibility in a traceable workflow.",
+      },
+      {
+        title: "Assets",
+        icon: "assets",
+        description:
+          "Manage asset registers, locations, movement, maintenance, depreciation schedules, and accounting throughout the lifecycle.",
+      },
+    ],
+    extensions: [
+      {
+        title: "Frappe HR & Payroll",
+        icon: "hr",
+        description:
+          "Extend employee, attendance, leave, salary, and payroll operations through the connected Frappe HR application.",
+      },
+      {
+        title: "Custom Apps & DocTypes",
+        icon: "custom-apps",
+        description:
+          "Model organization-specific records and rules in maintainable custom apps that keep ERPNext core files untouched.",
+      },
+      {
+        title: "Workflows & Reports",
+        icon: "workflows",
+        description:
+          "Create approvals, automation, print formats, dashboards, and operational reports around actual responsibilities.",
+      },
+      {
+        title: "APIs & Integrations",
+        icon: "integrations",
+        description:
+          "Connect ERPNext with external applications and services through controlled REST APIs, webhooks, and background jobs.",
+      },
+    ],
+    statistics: [
+      {
+        value: "30,000+",
+        label: "Companies using ERPNext",
+        sourceLabel: "ERPNext adoption",
+        sourceUrl: "https://frappe.io/erpnext",
+      },
+      {
+        value: "10",
+        label: "Featured industry sectors",
+        sourceLabel: "ERPNext industries",
+        sourceUrl: "https://frappe.io/erpnext/industry",
+      },
+      {
+        value: "160+",
+        label: "Listed Frappe partners",
+        sourceLabel: "Frappe partner network",
+        sourceUrl: "https://frappe.io/partners/regions",
+      },
+      {
+        value: "40+",
+        label: "Countries with listed partners",
+        sourceLabel: "Frappe partner network",
+        sourceUrl: "https://frappe.io/partners/regions",
+      },
+      {
+        value: "35,000+",
+        label: "ERPNext GitHub stars",
+        sourceLabel: "ERPNext on GitHub",
+        sourceUrl: "https://github.com/frappe/erpnext",
+      },
+      {
+        value: "1,700+",
+        label: "Published ERPNext releases",
+        sourceLabel: "ERPNext releases",
+        sourceUrl: "https://github.com/frappe/erpnext/releases",
+      },
+    ],
+    statisticsVerified: "Verified September 2026",
+    punchline: "See how your operations can work as one connected system.",
+    demoReasons: [
+      {
+        title: "Validate the fit",
+        description: "Compare ERPNext capabilities with the way your teams actually work before defining the solution.",
+      },
+      {
+        title: "Clarify the scope",
+        description: "Identify the modules, custom apps, reports, approvals, and integrations required for the first release.",
+      },
+      {
+        title: "Review your data",
+        description: "Assess existing records, data quality, migration needs, and the controls required for a reliable transition.",
+      },
+      {
+        title: "Plan the rollout",
+        description: "Establish practical phases for configuration, development, testing, training, deployment, and support.",
+      },
+    ],
+    trialUrl: "https://frappe.io/cloud",
+    faqs: [
+      {
+        question: "What is the difference between ERPNext and Frappe Framework?",
+        answer:
+          "ERPNext is the business application containing standard ERP modules. Frappe Framework is the underlying full-stack platform used to build ERPNext and create custom applications, DocTypes, workflows, reports, and integrations.",
+      },
+      {
+        question: "Can ERPNext be customized without changing core files?",
+        answer:
+          "Yes. We prefer custom apps, hooks, client and server scripts, custom fields, workflows, reports, and supported extension points. This keeps custom work separated from ERPNext core and makes future maintenance more manageable.",
+      },
+      {
+        question: "Which ERPNext modules can HB Solutions implement?",
+        answer:
+          "Our current experience is strongest in accounting-connected workflows, donation management, HR, payroll, attendance, master data, reports, and custom operational modules. The final implementation scope is confirmed after reviewing your processes and ERPNext version.",
+      },
+      {
+        question: "Can ERPNext integrate with existing applications?",
+        answer:
+          "ERPNext and Frappe provide REST APIs, webhooks, background jobs, and integration points. We assess each external system, authentication method, data contract, volume, and failure-handling requirement before confirming an integration.",
+      },
+      {
+        question: "Can existing business data be migrated?",
+        answer:
+          "Yes, when the source data can be mapped and validated. A migration normally includes data review, cleansing, mapping, trial imports, reconciliation, and approval before production cutover.",
+      },
+      {
+        question: "Should ERPNext use Frappe Cloud or self-hosting?",
+        answer:
+          "The right option depends on operational ownership, customization, security, budget, backup, and support requirements. A discovery session helps compare managed Frappe Cloud with an appropriately maintained self-hosted environment.",
+      },
+      {
+        question: "How long does an ERPNext implementation take?",
+        answer:
+          "Timing depends on modules, process complexity, customization, integrations, migration volume, stakeholder availability, and testing. We provide an implementation estimate only after the initial requirements and fit assessment.",
+      },
+      {
+        question: "What support is available after deployment?",
+        answer:
+          "Post-deployment support can include issue resolution, user assistance, monitoring, controlled enhancements, reports, workflow refinements, and release planning. The exact support model is agreed as part of the project scope.",
+      },
+    ],
+  },
+];
+
+export function getServicePage(slug: string) {
+  return servicePages.find((service) => service.slug === slug);
+}
 
 export const techStack = [
   {
